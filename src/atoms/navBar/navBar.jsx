@@ -15,7 +15,7 @@ const Navbar = () => {
     };
 
     const handleClickInsideDropdown = (e) => {
-        e.stopPropagation(); // Prevent propagation of the click event
+        e.stopPropagation();
     };
 
     const handleClickOutsideDropdown = (e) => {
@@ -40,18 +40,18 @@ const Navbar = () => {
             <div className="navbar-logo">Love4Games</div>
             <SearchBar/>
             <ul className="navbar-links">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/services">Services</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to = "/">Home</Link></li>
+                <li><Link to = "/about">About</Link></li>
+                <li><Link to = "/dashboard">Services</Link></li>
+                <li><Link to = "/contact">Contact</Link></li>
                 <li className = "navbar-dropdown" ref = {dropdownRef}>
                     <div className = "profile-icon" onClick = {handleIconClick} style = {{ cursor: 'pointer' }}>
                         <FontAwesomeIcon icon={faUser} />
                         {
                             isDropdownOpen && (
-                                <ul className="dropdown-menu" onClick={handleClickInsideDropdown}>
-                                    <li><Link to="/login">Log In</Link></li>
-                                    <li><Link to="/register">Register</Link></li>
+                                <ul className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
+                                    <li><Link to = "/login">Log In</Link></li>
+                                    <li><Link to = "/register">Register</Link></li>
                                 </ul>
                             )
                         }
