@@ -16,7 +16,7 @@ const Contact = () => {
                         <p>
                             <span>Alexandru Carpinisan</span><br/>
                             +40 737 103 418 <br/>
-                            -@gmail.com
+                            alex.carpinisan@gmail.com
                         </p>
                     </div>
 
