@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #4dccbd;
+    padding: 20px;
+    border-radius: 20px;
+    position: fixed;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #153532;
+    display: block;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #5beedd;
+}
+
+.sidebar ul li a:hover {
+    background-color: #ffffff;
+}
+
+.sidebar ul li#red a {
+    background-color: rgb(155, 0, 0);
+    color: white;
+}
+
+.sidebar ul li#red a:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(155, 0, 0);
+}
+
+.sidebar ul li#active {
+    box-shadow: 0 0 0 2px #000000;
+    border-radius: 10px; 
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background-color: #26423e;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 0 300px;
+}
