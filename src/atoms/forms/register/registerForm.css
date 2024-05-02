@@ -23,18 +23,25 @@
 }
 
 #register-form input[type="text"],
-#register-form input[type="password"] {
-    width: calc(100% - 20px);
+#register-form input[type="password"],
+#register-form select {
+    width: calc(100%);
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: -10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 #register-form input[type="text"]:focus,
-#register-form input[type="password"]:focus {
+#register-form input[type="password"]:focus,
+#register-form select:focus {
     border-color: #4dccbd;
+}
+
+#register-form select option {
+    padding: 10px;
 }
 
 #register-form button {
@@ -51,26 +58,6 @@
 
 #register-form button:hover {
     background-color: #248077;  
-}
-
-#register-register {
-    margin-bottom: 10px;
-}
-
-#register-register button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4dccbd;
-    border: none;
-    border-radius: 2px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#register-register button:hover {
-    background-color: #248077;
 }
 
 #register-errors {
