@@ -12,7 +12,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 30px;
+    bottom: 10px;
 }
 
 .google-login-wrapper p {
