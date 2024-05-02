@@ -10,6 +10,9 @@ import Dashboard from "./pages/dashboard/dashboard";
 import Users from "./pages/dashboard/users/users";
 import Products from "./pages/dashboard/products/products";
 import Orders from "./pages/dashboard/orders/orders";
+import Login from "./pages/login/login";
+import Register from "./pages/register/register";
+import { GoogleOAuthProvider } from "@react-oauth/google"
 
 const router = createBrowserRouter ([
     {
@@ -44,10 +47,20 @@ const router = createBrowserRouter ([
         path: "/orders",
         element: <Orders/>,
     },
+    {
+        path: "/login",
+        element: <Login/>,
+    },
+    {
+        path: "/register",
+        element: <Register/>,
+    },
 ]);
 
 createRoot (document.getElementById("root")).render (
-    <React.StrictMode>
-        <RouterProvider router = {router} />
-    </React.StrictMode>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+        <React.StrictMode>
+            <RouterProvider router = {router} />
+        </React.StrictMode>
+    </GoogleOAuthProvider>
 );
