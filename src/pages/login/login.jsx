@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../atoms/navbar/navBar";
+import Navbar from "../../atoms/navBar/navBar";
 import LoginForm from "../../atoms/forms/login/loginForm";
 import GoogleLoginForm from "../../atoms/forms/googleLogin/googleLogin";
 import "./login.css";
