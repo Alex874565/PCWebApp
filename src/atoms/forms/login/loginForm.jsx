@@ -1,8 +1,6 @@
 import $ from 'jquery';
-import { GoogleLogin } from '@react-oauth/google';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios'
-import { jwtDecode } from 'jwt-decode';
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -16,12 +14,19 @@ const LoginForm = () => {
           })
           .then((response) => {
             console.log(response);
+//            this.props.history.push('/home')
+          }).catch((err) => {
+            console.log(err)
+            if(err.response.status == 401){
+                window.alert("Wrong email or password!")
+            }else{
+                window.alert("Connection error!")
+            }
           });
-      }
-
+    }
 
     function valid_password_test(str){
-        return str.match(/[A-Za-z0-9]{8,20/);
+        return str.match(/[A-Za-z0-9]{8,20}/);
     }
 
     function valid_email_test(str){
