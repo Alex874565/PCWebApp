@@ -11,30 +11,30 @@ const Contact = () => {
                 <h1>Contact Us</h1>
                 
                 <div className="people">
-                    <div className="person" id = "alex">
+                    <div className="person" id="alex">
                         <img src="../../../images/alex.jpg" alt="" />
                         <p>
-                            <span>Alexandru Carpinisan</span><br/>
+                            <span>Alexandru Cărpinișan</span><br/>
                             +40 737 103 418 <br/>
-                            alex.carpinisan@gmail.com
+                            <a href="mailto:alex.carpinisan@gmail.com">alex.carpinisan@gmail.com</a>
                         </p>
                     </div>
 
-                    <div className="person" id = "roxana">
+                    <div className="person" id="roxana">
                         <img src="../../../images/roxi.jpg" alt="" />
                         <p>
                             <span>Roxana Keller</span><br/>
                             +40 722 425 422 <br/>
-                            kellerroxana30@gmail.com
+                            <a href="mailto:kellerroxana30@gmail.com">kellerroxana30@gmail.com</a>
                         </p>
                     </div>
 
-                    <div className="person" id = "letitia">
+                    <div className="person" id="letitia">
                         <img src="../../../images/leti.jpg" alt="" />
                         <p>
-                            <span>Letitia Iliescu</span><br/>
+                            <span>Letiția Iliescu</span><br/>
                             +40 770 915 325 <br/>
-                            letitia.iliescu@gmail.com
+                            <a href="mailto:letitia.iliescu@gmail.com">letitia.iliescu@gmail.com</a>
                         </p>
                     </div>
                 </div>
