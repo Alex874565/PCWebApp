@@ -3,7 +3,7 @@ import { useState } from 'react';
 import $ from 'jquery';
 import axios from 'axios'
 
-function RegisterForm(){
+function RegisterForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -44,7 +44,7 @@ function RegisterForm(){
           });
     }
 
-    async function letters_nums_test(str){
+    async function letters_nums_test (str) {
         return await str.match(/^[a-z0-9]*$/);
     }
 
@@ -127,4 +127,4 @@ function RegisterForm(){
     )
 }
 
-export default RegisterForm
+export default RegisterForm;
