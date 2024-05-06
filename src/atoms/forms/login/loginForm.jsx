@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import './loginForm.css';
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
