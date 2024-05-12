@@ -3,6 +3,7 @@ import Navbar from "../../atoms/navBar/navBar";
 import LoginForm from "../../atoms/forms/login/loginForm";
 import GoogleLoginForm from "../../atoms/forms/googleLogin/googleLogin";
 import "./login.css";
+import "../../atoms/forms/googleLogin/googleLogin.css";
 
 const Login = () => {
     return (
