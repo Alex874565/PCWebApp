@@ -1,0 +1,29 @@
+/* FilterPanel.css */
+.sidepanel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 60px;
+    left: 0;
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidepanel.open {
+    width: 250px;
+  }
+  
+  .sidepanel.closed {
+    width: 0;
+  }
+  
+  /* Optional: Style the close button */
+  .closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  

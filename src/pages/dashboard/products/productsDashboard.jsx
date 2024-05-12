@@ -1,8 +1,8 @@
 import React from "react";
-import "./products.css";
+import "./productsDashboard.css";
 import { Link } from "react-router-dom";
 
-const Products = () => {
+const ProductsDashboard = () => {
     return (
         <div>
             <div className = "container">
@@ -30,4 +30,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default ProductsDashboard;

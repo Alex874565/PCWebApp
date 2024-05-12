@@ -5,10 +5,12 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from '../searchBar/searchBar';
 import '../../atoms/searchBar/searchBar.css';
 import './navBar.css';
+import axios from 'axios';
 
 const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const [user, setUser] = useState(null);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -28,6 +30,15 @@ const Navbar = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
+    const logOut = () => {
+        if(window.confirm("Are you sure you want to log out?")){
+            localStorage.clear()
+            axios.defaults.headers.common['Authorization'] = ""
+            window.alert("Logged out successfully!")
+            window.location.reload()
+        }
+    }
+
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutsideDropdown);
         return () => {
@@ -35,12 +46,17 @@ const Navbar = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if(localStorage.getItem("user")){
+            setUser(JSON.parse(localStorage.getItem("user")))
+        }
+    }, [])
+
     return (
         <nav className="navbar">
-            <div className="navbar-logo">Love4Games</div>
+            <div className="navbar-logo"><Link style ={{color:"rgba(255, 255, 255, 0.87)",textDecoration: "none"}} to = "/">Love4Games</Link></div>
             <SearchBar/>
             <ul className="navbar-links">
-                <li><Link to = "/">Home</Link></li>
                 <li><Link to = "/about">About</Link></li>
                 <li><Link to = "/services">Services</Link></li>
                 <li><Link to = "/contact">Contact</Link></li>
@@ -48,12 +64,17 @@ const Navbar = () => {
                     <div className = "profile-icon" onClick = {handleIconClick} style = {{ cursor: 'pointer' }}>
                         <FontAwesomeIcon icon={faUser} />
                         {
-                            isDropdownOpen && (
+                            isDropdownOpen && !user &&
                                 <ul className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
                                     <li><Link to = "/login">Log In</Link></li>
                                     <li><Link to = "/register">Register</Link></li>
                                 </ul>
-                            )
+                        }
+                        {  
+                            isDropdownOpen && user && 
+                                <ul className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
+                                    <li><a onClick={logOut}>Log Out</a></li>
+                                </ul>
                         }
                     </div>
                 </li>
