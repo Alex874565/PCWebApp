@@ -44,11 +44,11 @@ const LoginForm = () => {
         console.log(email);
         console.log(password);
         if (email == "" || password == "")
-            $('#login_errors').text("All fields must be completed!");
+            $('#login-errors').text("All fields must be completed!");
         else if (!valid_email_test(email) || !valid_password_test(password))
-            $('#login_errors').text("Please only use numbers and letters for password (min. 8, max. 20) and a valid email address.");
+            $('#login-errors').text("Please only use numbers and letters for password (min. 8, max. 20) and a valid email address.");
         else if (email.length >= 50 || password.length >= 30)
-            $('#login_errors').text("Username or password too long.");
+            $('#login-errors').text("Username or password too long.");
         else
             createPost(email, password)
     }
@@ -73,7 +73,7 @@ const LoginForm = () => {
             <div id = "login-register">Don't have an account?<br />
                 <button onClick = {() => {window.location.href = '/register';}} >Register</button>
             </div>
-            <div id = "login_errors">
+            <div id = "login-errors">
             </div>
         </div>
     );
