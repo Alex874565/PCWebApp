@@ -72,15 +72,15 @@ function RegisterForm() {
         $('#register_errors').empty();
         event.preventDefault();
         if (email == "" || username == "" || password == "")
-            $('#register_errors').text("All fields must be completed!");
+            $('#register-errors').text("All fields must be completed!");
         else if (!valid_email_test(email))
-            $('#register_errors').text("Make sure you entered a valid email address.");
+            $('#register-errors').text("Make sure you entered a valid email address.");
         else if (!letters_nums_test(username))
-            $('#register_errors').text("Forbidden characters. Please only use numbers and lowercase letters for name and password.");
+            $('#register-errors').text("Forbidden characters. Please only use numbers and lowercase letters for name and password.");
         else if (!valid_password_test(password))
-            $('#register_errors').text("Please only use numbers and letters for password (min. 8, max. 20).");
+            $('#register-errors').text("Please only use numbers and letters for password (min. 8, max. 20).");
         else if (username.length >= 16 || password.length >= 16)
-            $('#register_errors').text("Username or password too long.");
+            $('#register-errors').text("Username or password too long.");
         else {
             const emailExists = await checkEmail();
             if (emailExists == true)
