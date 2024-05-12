@@ -1,5 +1,4 @@
 import { GoogleLogin } from '@react-oauth/google';
-import { useState, useEffect } from 'react';
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode';
 

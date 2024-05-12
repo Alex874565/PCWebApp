@@ -13,6 +13,7 @@ import Orders from "./pages/dashboard/orders/orders";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import { GoogleOAuthProvider } from "@react-oauth/google"
+import Cart from "./pages/cart/cart"
 
 const router = createBrowserRouter ([
     {
@@ -55,6 +56,10 @@ const router = createBrowserRouter ([
         path: "/register",
         element: <Register/>,
     },
+    {
+        path: "/cart",
+        element: <Cart/>,
+    }
 ]);
 
 createRoot (document.getElementById("root")).render (
