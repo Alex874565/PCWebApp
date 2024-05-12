@@ -1,0 +1,85 @@
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: 20px;
+  background-color: #242424;
+}
+
+.contact-page h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.contact-page p {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.contact-page ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-page ul li {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.contact-page ul li:before {
+  content: "\2022";
+  color: rgba(255, 255, 255, 0.87);
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.contact-page .people {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 200px;
+}
+
+.person {
+  flex: 1;
+  max-width: 400px;
+}
+
+.person img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 50%;
+}
+
+.person p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.person#alex span {
+  color: #48d1cc;
+}
+
+.person#roxana span {
+  color: #123499;
+}
+
+.person#letitia span {
+  color: #dc3545;
+}
+
+.person p span {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+}

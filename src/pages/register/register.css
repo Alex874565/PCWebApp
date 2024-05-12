@@ -1,0 +1,30 @@
+.title {
+    text-align: center;
+}
+
+.google-login-wrapper {
+    width: 100%;
+    max-width: 400px;
+    background-color: #0e353100;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -100px;
+}
+
+.google-login-wrapper p {
+    margin-bottom: 5px;
+}
+
+.google-login-wrapper .google-login-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
