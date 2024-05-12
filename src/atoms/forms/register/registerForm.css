@@ -65,3 +65,45 @@
     font-size: 14px;
     margin-top: 10px;
 }
+
+#code-form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #0e3531;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#code-form input[type="text"] {
+    width: calc(100%);
+    padding: 10px;
+    margin-bottom: -10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+#code-form input[type="text"]:focus {
+    border-color: #4dccbd;
+}
+
+#code-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4dccbd;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#code-form button:hover {
+    background-color: #248077;
+}
