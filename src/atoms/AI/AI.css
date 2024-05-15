@@ -1,0 +1,95 @@
+.ai_body{
+    position: absolute;
+    width: 50%;
+    margin-left: 20%;
+    height: 880px;
+    margin-top: 90px;
+    position: absolute;
+    z-index: 20;
+}
+
+.cs-main-container{
+    width: 100%;
+    margin-top: 5px;
+    border: 10px solid rgb(96, 45, 20);
+    border-radius: 10px 10px 10px 10px;
+    height: 100%;
+}
+
+.cs-message-list{
+    background-color: rgb(207, 166, 134);
+    font-size: 20px;
+    border-bottom: 2px solid rgb(96, 45, 20);
+    max-height: 860px;
+    
+}
+
+.scrollbar-container{
+    &.cs-message-list__scroll-wrapper{
+        &.ps{
+            padding: 10px;
+            padding-right: 20px;
+        }
+    }
+}
+
+.cs-message__content-wrapper{
+    z-index: 20 !important;
+}
+
+.cs-message__content{
+    font-weight: 600;
+    background-color: rgb(255, 223, 177, 1);
+    color: rgb(96, 45, 20);
+}
+
+.cs-message--outgoing .cs-message__content{
+    color: rgb(255, 223, 177, 1);
+    background-color: rgb(96, 45, 20);
+}
+
+.cs-message{
+    padding-top: 5px;
+}
+
+.cs-typing-indicator{
+    background-color: rgb(207, 166, 134) !important;
+    z-index: 1 !important;
+}
+
+.cs-typing-indicator__text{
+    font-family: 'Rocky' !important;
+    color: rgb(96, 45, 20) !important;
+}
+
+.cs-typing-indicator__dot{
+    background-color: rgb(96, 45, 20) !important;
+}
+
+.ps__thumb-y{
+    background-color: rgb(96, 45, 20) !important;
+}
+
+.ps__rail-y{
+    background-color: rgb(255, 223, 177, 1) !important;
+}
+
+.cs-message-input{
+    font-weight: 600;
+    font-size: 20px;
+    background-color: rgb(96, 45, 20) !important;
+    border-top: 0px !important;
+}
+
+.cs-message-input__content-editor-wrapper{
+    background-color: rgb(255, 223, 177, 1) !important;
+}
+
+.cs-message-input__content-editor{
+    background-color: rgb(255, 223, 177, 1) !important;
+    color: rgb(96, 45, 20) !important;
+}
+
+.cs-button{
+    color: rgb(255, 223, 177, 1) !important;
+}

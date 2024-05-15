@@ -6,7 +6,7 @@ import { getPosts } from "../../services/api/getPosts";
 import PostCard from "../../atoms/postCard/postCard";
 import Navbar from "../../atoms/navBar/navBar";
 import Slideshow from "../../atoms/slideshow/slideshow";
-
+import AI from "../../atoms/AI/AI";
 
 const images = [
   'https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/87b026b9-d875-44b3-b42b-68c10e3bd960._CR0%2C0%2C3000%2C600_SX1500_.jpg',
@@ -18,10 +18,6 @@ const Home = () => {
   const [counter, setCounter] = useState(0);
   const [posts, setPosts] = useState([]);
   const [title, setTitle] = useState("");
-
-  const handleIncreaseCounter = () => {
-    setCounter((prev) => prev + 1);
-  };
 
   useEffect(() => {
     const handleGetPosts = async () => {
@@ -48,6 +44,8 @@ const Home = () => {
           <PostCard key={post.id} title={post.title} body={post.body} />
         ))}
       </div>
+      {console.log("Rendering AI")}
+      <AI />
     </div>
   );
 };
