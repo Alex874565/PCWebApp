@@ -7,6 +7,7 @@ import "../../atoms/footer/footer.css";
 
 import Navbar from "../../atoms/navBar/navBar";
 import Slideshow from "../../atoms/slideshow/slideshow";
+import AI from "../../atoms/AI/AI";
 import Footer from "../../atoms/footer/footer";
 
 
@@ -63,6 +64,8 @@ const Home = () => {
         </ul>
         
       </div>
+      {console.log("Rendering AI")}
+      <AI />
       <Footer/>
     </div>
   );

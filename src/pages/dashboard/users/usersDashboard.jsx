@@ -1,27 +1,27 @@
 import React from "react";
-import "./orders.css";
+import "./usersDashboard.css";
 import { Link } from "react-router-dom";
 
-const Orders = () => {
+const UsersDashboard = () => {
     return (
         <div>
             <div className = "container">
                 <div className = "sidebar">
                     <ul>
                         <li><Link to = "/dashboard">Dashboard</Link></li>
-                        <li><Link to = "/users">Users</Link></li>
+                        <li id = "active"><Link to="/users">Users</Link></li>
                         <li><Link to = "/products">Products</Link></li>
-                        <li id = "active"><Link to = "/orders">Orders</Link></li>
+                        <li><Link to = "/orders">Orders</Link></li>
                         <li id = "red"><Link to = "/">Back to site</Link></li>
                     </ul>
                 </div>
                 <div className = "main-content">
-                    <h1>Orders management</h1>
+                    <h1>Users management</h1>
 
-                    <div className="card-container">
-                        <div className="card">
-                            <h2>Order 1</h2>
-                            <p>Order details...</p>
+                    <div className = "card-container">
+                        <div className = "card">
+                            <h2>User 1</h2>
+                            <p>User details...</p>
                         </div>
                     </div>
                 </div>
@@ -30,4 +30,4 @@ const Orders = () => {
     );
 };
 
-export default Orders;
+export default UsersDashboard;

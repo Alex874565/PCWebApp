@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^2.0.3",
+    "@chatscope/chat-ui-kit-styles": "^1.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "github:fortawesome/react-fontawesome",
+    "@paypal/react-paypal-js": "^8.3.0",
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.6.8",
     "cors": "^2.8.5",

@@ -7,12 +7,14 @@ import Contact from "./pages/contact/contact";
 import About from "./pages/about/about";
 import Services from "./pages/services/services";
 import Dashboard from "./pages/dashboard/dashboard";
-import Users from "./pages/dashboard/users/users";
-import Products from "./pages/dashboard/products/products";
-import Orders from "./pages/dashboard/orders/orders";
+import UsersDashboard from "./pages/dashboard/users/usersDashboard";
+import ProductsDashboard from "./pages/dashboard/products/productsDashboard";
+import OrdersDashboard from "./pages/dashboard/orders/ordersDashboard";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import { GoogleOAuthProvider } from "@react-oauth/google"
+import Cart from "./pages/cart/cart"
+import Products from "./pages/products/products";
 import Product from "./pages/product/product";
 
 const router = createBrowserRouter ([
@@ -37,16 +39,16 @@ const router = createBrowserRouter ([
         element: <Dashboard/>,
     },
     {
-        path: "/users",
-        element: <Users/>,
+        path: "/users_dashboard",
+        element: <UsersDashboard/>,
     },
     {
-        path: "/products",
-        element: <Products/>,
+        path: "/products_dashboard",
+        element: <ProductsDashboard/>,
     },
     {
-        path: "/orders",
-        element: <Orders/>,
+        path: "/orders_dashboard",
+        element: <OrdersDashboard/>,
     },
     {
         path: "/login",
@@ -55,6 +57,14 @@ const router = createBrowserRouter ([
     {
         path: "/register",
         element: <Register/>,
+    },
+    {
+        path: "/cart",
+        element: <Cart/>,
+    },
+    {
+        path: "/products/:keyword?",
+        element: <Products/>,
     },
     {
         path: "/product/:id",
