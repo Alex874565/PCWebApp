@@ -14,6 +14,7 @@ import Register from "./pages/register/register";
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import Cart from "./pages/cart/cart"
 import Products from "./pages/products/products";
+import Product from "./pages/product/product";
 
 const router = createBrowserRouter ([
     {
@@ -60,6 +61,10 @@ const router = createBrowserRouter ([
         path: "/products/:keyword?",
         element: <Products/>,
     },
+    {
+        path: "/product/:id",
+        element: <Product />
+    }
 ]);
 
 createRoot (document.getElementById("root")).render (
