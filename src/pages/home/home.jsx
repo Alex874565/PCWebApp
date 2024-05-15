@@ -4,11 +4,11 @@ import "./home.css";
 import "../../atoms/navBar/navBar.css";
 import "../../atoms/slideshow/slideshow.css";
 import "../../atoms/footer/footer.css";
-import "../../atoms/chatWindow/chatWindow.css";
+
 import Navbar from "../../atoms/navBar/navBar";
 import Slideshow from "../../atoms/slideshow/slideshow";
 import Footer from "../../atoms/footer/footer";
-import ChatWindow from "../../atoms/chatWindow/chatWindow"; // Import the ChatWindow component
+
 
 const images = [
   'https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/87b026b9-d875-44b3-b42b-68c10e3bd960._CR0%2C0%2C3000%2C600_SX1500_.jpg',
@@ -61,8 +61,7 @@ const Home = () => {
             </li>
           ))}
         </ul>
-        {/* Add the ChatWindow component */}
-        <ChatWindow />
+        
       </div>
       <Footer/>
     </div>
