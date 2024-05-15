@@ -45,7 +45,6 @@ const Home = () => {
         ))}
       </div>
       {console.log("Rendering AI")}
-      <AI />
     </div>
   );
 };

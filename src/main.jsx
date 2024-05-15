@@ -5,7 +5,6 @@ import "./index.css";
 import Home from "./pages/home/home";
 import Contact from "./pages/contact/contact";
 import About from "./pages/about/about";
-import Services from "./pages/services/services";
 import Dashboard from "./pages/dashboard/dashboard";
 import UsersDashboard from "./pages/dashboard/users/usersDashboard";
 import ProductsDashboard from "./pages/dashboard/products/productsDashboard";
@@ -28,10 +27,6 @@ const router = createBrowserRouter ([
     {
         path: "/about",
         element: <About/>,
-    },
-    {
-        path: "/services",
-        element: <Services/>,
     },
     {
         path: "/dashboard",

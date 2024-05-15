@@ -12,10 +12,6 @@ const Navbar = () => {
     const dropdownRef = useRef(null);
     const [user, setUser] = useState(null);
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
-
     const handleClickInsideDropdown = (e) => {
         e.stopPropagation();
     };
@@ -58,7 +54,7 @@ const Navbar = () => {
             <SearchBar/>
             <ul className="navbar-links">
                 <li><Link to = "/about">About</Link></li>
-                <li><Link to = "/services">Services</Link></li>
+                <li><Link to = "/products/">Products</Link></li>
                 <li><Link to = "/contact">Contact</Link></li>
                 <li className = "navbar-dropdown" ref = {dropdownRef}>
                     <div className = "profile-icon" onClick = {handleIconClick} style = {{ cursor: 'pointer' }}>

@@ -14,7 +14,8 @@ function AI() {
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
-  const [products, setProducts] = useState(null)
+  const [products, setProducts] = useState(null);
+  const [isMinimized, setIsMinimized] = useState(true);
 
   const handleSend = async (message) => {
     const newMessage = {
@@ -86,6 +87,8 @@ function AI() {
 
   return (
     <div className="ai_body">
+    AI Assistant <button id="minimize_button" onClick={() => setIsMinimized(!isMinimized)}>-</button>
+    { !isMinimized &&
       <MainContainer>
         <ChatContainer>       
           <MessageList
@@ -99,6 +102,7 @@ function AI() {
           <MessageInput placeholder="Type message here" onSend={handleSend} />        
         </ChatContainer>
       </MainContainer>
+    }
     </div>
   )
 }
