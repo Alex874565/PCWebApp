@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    background-color: white;
 }
 
 .sidebar {
@@ -51,10 +52,36 @@
     border-radius: 10px; 
 }
 
+.sidebar ul li#website-name {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+    left: 0;
+}
+
 .main-content {
-    flex: 1;
+    flex-grow: 1;
     padding: 20px;
-    margin-left: 300px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 260px; /* to account for sidebar's width + margin */
+    background-color: white;
+    color: black;
+}
+
+.stats-container {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: #4dccbd;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 300px;
 }
