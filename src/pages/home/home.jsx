@@ -111,7 +111,7 @@ const Home = () => {
         </ul>
         
       </div>
-      <AI />
+      
       <Footer />
     </div>
   );
