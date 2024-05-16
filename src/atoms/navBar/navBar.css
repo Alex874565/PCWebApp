@@ -20,6 +20,7 @@
 
 .navbar-links li {
     margin-right: 10px;
+    list-style: none;
 }
 
 .navbar-links li a {

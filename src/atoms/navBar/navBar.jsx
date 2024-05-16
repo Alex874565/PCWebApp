@@ -29,7 +29,6 @@ const Navbar = () => {
     const logOut = () => {
         if(window.confirm("Are you sure you want to log out?")){
             localStorage.clear()
-            axios.defaults.headers.common['Authorization'] = ""
             window.alert("Logged out successfully!")
             window.location.replace("/")
         }
@@ -56,6 +55,10 @@ const Navbar = () => {
                 <li><Link to = "/about">About</Link></li>
                 <li><Link to = "/products/">Products</Link></li>
                 <li><Link to = "/contact">Contact</Link></li>
+                {
+                    user && ["Admin", "Distributor"].indexOf(user.role) != -1 &&
+                    <li><Link to = "/dashboard">Dashboard</Link></li>
+                }
                 <li className = "navbar-dropdown" ref = {dropdownRef}>
                     <div className = "profile-icon" onClick = {handleIconClick} style = {{ cursor: 'pointer' }}>
                         <FontAwesomeIcon icon={faUser} />
