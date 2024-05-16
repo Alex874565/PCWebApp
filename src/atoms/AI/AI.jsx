@@ -21,7 +21,7 @@ function AI() {
     const newMessage = {
       message,
       direction: 'outgoing',
-      sender: JSON.parse(localStorage.getItem("user")).name
+      sender: 'user'
     };
 
     const newMessages = [...messages, newMessage];
