@@ -11,10 +11,12 @@ const ProductPage = () => {
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
+  const [newReview, setNewReview] = useState({ rating: "", comment: "" });
 
-
-  useEffect(() => setUser(JSON.parse(localStorage.getItem("user"))), []);
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
 
   useEffect(() => {
     // Fetch the product details based on the ID
@@ -35,7 +37,6 @@ const ProductPage = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    // Implement your add to cart logic here
     const cart = localStorage.getItem("cart");
     let items = cart ? JSON.parse(cart) : [];
     let exists = false;
@@ -69,14 +70,26 @@ const ProductPage = () => {
     .catch((error) => console.error("Error deleting review:", error));
   };
 
-  // Function to format date in a more readable format
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+    const reviewData = {
+      ...newReview,
+      product_id: id,
+      user: user ? user.name : "Anonymous",
+      date: new Date().toLocaleDateString()
+    };
+
+    axios.post(`http://localhost:3001/api/reviews`, reviewData, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      }
+    }
+    )
+      .then((response) => {
+        setReviews([...reviews, response.data]);
+        setNewReview({ rating: "", comment: "" });
+      })
+      .catch((error) => console.error("Error adding review:", error));
   };
 
   const renderStars = (rating) => {
@@ -89,6 +102,15 @@ const ProductPage = () => {
       );
     }
     return stars;
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
   if (!product) {
@@ -122,17 +144,45 @@ const ProductPage = () => {
       </div>
       <div className="productpage-reviews">
         <h2>Reviews</h2>
-        {console.log(reviews)}
         {reviews.map((review) => (
           <div key={review._id} className="review">
             <h4>{review.user}</h4>
             <div className="stars">{renderStars(review.rating)}</div>
             <p>{review.comment}</p>
-            {user && ["Admin", "Distributor"].indexOf(user.role) != -1 && (
+            {user && ["Admin", "Distributor"].indexOf(user.role) !== -1 && (
               <button onClick={() => handleDeleteReview(review._id)}>Delete Review</button>
             )}
           </div>
         ))}
+        {user && (
+          <div className="add-review">
+            <h3>Add a Review</h3>
+            <form onSubmit={handleReviewSubmit}>
+              <label>
+                Rating:
+                <select
+                  value={newReview.rating}
+                  onChange={(e) => setNewReview({ ...newReview, rating: e.target.value })}
+                  required
+                >
+                  <option value="">Select Rating</option>
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Comment:
+                <textarea
+                  value={newReview.comment}
+                  onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
+                  required
+                />
+              </label>
+              <button type="submit">Submit Review</button>
+            </form>
+          </div>
+        )}
       </div>
       <Footer />
     </div>
