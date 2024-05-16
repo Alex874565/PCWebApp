@@ -15,53 +15,78 @@ function Products() {
   const [panelOpen, setPanelOpen] = useState(false);
   const [renderedProducts, setRenderedProducts] = useState([]);
   const [producer, setProducer] = useState("");
-  const [genre, setGenre] = useState("")
-  const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState(0)
+  const [genre, setGenre] = useState("");
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [ratings, setRatings] = useState({});
 
   function getProducts() {
-    if (keyword == undefined) {
+    if (keyword === undefined) {
       axios.get(`http://localhost:3001/api/products/keyword/`).then((resp) => {
         setRenderedProducts(resp.data);
         setProducts(resp.data);
-    });
+      });
     } else {
       axios.get(`http://localhost:3001/api/products/keyword/${keyword}`).then((resp) => {
         setRenderedProducts(resp.data);
         setProducts(resp.data);
-    });
+      });
     }
+  }
+
+  function getRatings() {
+    axios.get("http://localhost:3001/api/reviews").then((resp) => {
+      const ratingsData = resp.data;
+      const ratingsMap = {};
+
+      ratingsData.forEach((review) => {
+        const { product_id, rating } = review;
+        if (!ratingsMap[product_id]) {
+          ratingsMap[product_id] = { total: 0, count: 0 };
+        }
+        ratingsMap[product_id].total += rating;
+        ratingsMap[product_id].count += 1;
+      });
+
+      const averageRatings = {};
+      for (const productId in ratingsMap) {
+        averageRatings[productId] = (ratingsMap[productId].total / ratingsMap[productId].count).toFixed(1);
+      }
+      setRatings(averageRatings);
+    });
   }
 
   useEffect(() => {
     getProducts();
+    getRatings();
   }, []);
-
 
   const togglePanel = () => {
     setPanelOpen(!panelOpen);
   };
 
-  function filterProduct(product){
-    if((product.price >= minPrice || !minPrice) && (product.price <= maxPrice || maxPrice == 0 || !maxPrice)){
-        if(product.genre == genre || genre == "" || !genre){
-            if(product.producer == producer || producer == "" || !producer){
-                return product
-            }
-        }
+  function filterProduct(product) {
+    if (
+      (product.price >= minPrice || !minPrice) &&
+      (product.price <= maxPrice || maxPrice === 0 || !maxPrice) &&
+      (product.genre === genre || genre === "" || !genre) &&
+      (product.producer === producer || producer === "" || !producer)
+    ) {
+      return product;
     }
   }
 
-  function resetRenderedProducts(){
+  function resetRenderedProducts() {
     setRenderedProducts(products);
   }
 
-  function filterProducts(){
-    setRenderedProducts(products.filter(product => filterProduct(product)))
+  function filterProducts() {
+    setRenderedProducts(products.filter((product) => filterProduct(product)));
   }
 
- function renderFilterPanel(){
-    return (<div className={`sidepanel ${panelOpen ? 'open' : 'closed'}`}>
+  function renderFilterPanel() {
+    return (
+      <div className={`sidepanel ${panelOpen ? 'open' : 'closed'}`}>
         <button className="closeBtn" onClick={togglePanel}>Close</button>
         <div className="filterGroup">
           <label htmlFor="producer">Producer:</label>
@@ -83,30 +108,45 @@ function Products() {
         <button className="resetBtn" onClick={resetRenderedProducts}>Reset</button>
       </div>
     );
- }
+  }
+
+  function renderStars(rating) {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < Math.floor(rating)) {
+        stars.push(<span key={i} className="star filled">★</span>);
+      } else if (i < rating) {
+        stars.push(<span key={i} className="star half-filled">★</span>);
+      } else {
+        stars.push(<span key={i} className="star">☆</span>);
+      }
+    }
+    return stars;
+  }
 
   return (
     <div>
       <Navbar />
       {!panelOpen && <button className="openFilterBtn" onClick={togglePanel}>Open Filter</button>}
       {renderFilterPanel()}
-      {console.log(renderedProducts)}
       {!renderedProducts[0] && <p>No products matching that filter/keyword!</p>}
       <h1>List of Products:</h1>
-        <ul className="products-container">
-          {renderedProducts.map((product) => (
-            <li key={product._id} className="product-item"> {/* Added className */}
-              <Link to={`/product/${product._id}`} className="link">
-                {/* Wrap product with Link */}
-                <img className="product-image" src={product.image} alt={product.name} />
-                <p className="product-name">{product.name}</p>
-                <p className="product-price">${product.price}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <ul className="products-container">
+        {renderedProducts.map((product) => (
+          <li key={product._id} className="product-item">
+            <Link to={`/product/${product._id}`} className="link">
+              <img className="product-image" src={product.image} alt={product.name} />
+              <p className="product-name">{product.name}</p>
+              <p className="product-price">${product.price}</p>
+              <div className="product-rating">
+                {ratings[product._id] ? renderStars(ratings[product._id]) : 'No rating available'}
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
       <AI />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

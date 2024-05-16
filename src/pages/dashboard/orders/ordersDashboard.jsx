@@ -48,10 +48,14 @@ const Orders = () => {
                         {error ? (
                             <div className = "error-message">{error}</div>
                         ) : (
-                            orders.map(user => (
+                            orders.map(order => (
                                 <div key = {order._id} className = "card">
-                                    <h2>{order.name}</h2>
-                                    <p>{order.details}</p>
+                                    <h2>User ID: {order.user_id}</h2>
+                                    <p>Value: {order.value}</p>
+                                    <p>Products:</p>
+                                    {order.products.map((product) => {
+                                        return <li>{product}</li>;
+                                    })}
                                 </div>
                             ))
                         )}
