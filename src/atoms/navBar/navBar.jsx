@@ -5,7 +5,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from '../searchBar/searchBar';
 import '../../atoms/searchBar/searchBar.css';
 import './navBar.css';
-import axios from 'axios';
 
 const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);

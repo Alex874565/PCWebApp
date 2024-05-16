@@ -36,3 +36,13 @@
   .link {
     text-decoration: none; /* Remove underline */
   }
+
+  .star {
+    font-size: 20px;
+    color: lightgray;
+  }
+  
+  .star.filled {
+    color: gold;
+  }
+  
