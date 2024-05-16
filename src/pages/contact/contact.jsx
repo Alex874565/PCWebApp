@@ -16,7 +16,7 @@ const Contact = () => {
                         <img src="../../../images/alex.jpg" alt="" />
                         <p>
                             <span>Alexandru Cărpinișan</span><br/>
-                            +40 737 103 418 <br/>
+                            +40 123 456 789 <br/>
                             <a href="mailto:alex.carpinisan@gmail.com">alex.carpinisan@gmail.com</a>
                         </p>
                     </div>
@@ -25,7 +25,7 @@ const Contact = () => {
                         <img src="../../../images/roxi.jpg" alt="" />
                         <p>
                             <span>Roxana Keller</span><br/>
-                            +40 722 425 422 <br/>
+                            +40 123 456 789 <br/>
                             <a href="mailto:kellerroxana30@gmail.com">kellerroxana30@gmail.com</a>
                         </p>
                     </div>
@@ -34,7 +34,7 @@ const Contact = () => {
                         <img src="../../../images/leti.jpg" alt="" />
                         <p>
                             <span>Letiția Iliescu</span><br/>
-                            +40 770 915 325 <br/>
+                            +40 123 456 789 <br/>
                             <a href="mailto:letitia.iliescu@gmail.com">letitia.iliescu@gmail.com</a>
                         </p>
                     </div>
