@@ -16,6 +16,7 @@ import Cart from "./pages/cart/cart"
 import Products from "./pages/products/products";
 import Product from "./pages/product/product";
 import AuthToken from "./services/config/auth_token";
+import GDPR from "./pages/gdpr/gdpr";
 
 const router = createBrowserRouter ([
     {
@@ -65,6 +66,10 @@ const router = createBrowserRouter ([
     {
         path: "/product/:id",
         element: <Product />
+    },
+    {
+        path:"/gdpr",
+        element:<GDPR/>
     }
 ]);
 

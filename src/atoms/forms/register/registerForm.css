@@ -107,3 +107,9 @@
 #code-form button:hover {
     background-color: #248077; /* Hover color to match login form */
 }
+
+.gdpr-consent {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

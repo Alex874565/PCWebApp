@@ -1,0 +1,39 @@
+.gdpr-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color:black;
+    height:65vh
+  }
+  
+  .gdpr-container h2 {
+    margin-bottom: 10px;
+  }
+  
+  .gdpr-container p {
+    margin-bottom: 10px;
+  }
+  
+  .gdpr-container ul {
+    margin-bottom: 10px;
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .gdpr-consent {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .gdpr-consent input {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .gdpr-consent label {
+    margin-left: 5px;
+  }
+  
