@@ -46,3 +46,26 @@
     color: gold;
   }
   
+  .productpage-reviews {
+    margin-left: 100px;
+    color: black;
+  }
+
+  .review {
+    margin-left: 30px;
+  }
+
+  .productpage-reviews button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .productpage-reviews button:hover {
+    background-color: #0056b3;
+  }

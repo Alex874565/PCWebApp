@@ -11,6 +11,10 @@ const ProductPage = () => {
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [user, setUser] = useState(null)
+
+
+  useEffect(() => setUser(JSON.parse(localStorage.getItem("user"))), []);
 
   useEffect(() => {
     // Fetch the product details based on the ID
@@ -91,8 +95,6 @@ const ProductPage = () => {
     return <div>Loading...</div>;
   }
 
-  const currentUser = JSON.parse(localStorage.getItem("user"));
-
   return (
     <div>
       <Navbar />
@@ -120,12 +122,13 @@ const ProductPage = () => {
       </div>
       <div className="productpage-reviews">
         <h2>Reviews</h2>
+        {console.log(reviews)}
         {reviews.map((review) => (
           <div key={review._id} className="review">
-            <h4>{review.user.name}</h4>
+            <h4>{review.user}</h4>
             <div className="stars">{renderStars(review.rating)}</div>
             <p>{review.comment}</p>
-            {currentUser && currentUser.role === "admin" && (
+            {user && ["Admin", "Distributor"].indexOf(user.role) != -1 && (
               <button onClick={() => handleDeleteReview(review._id)}>Delete Review</button>
             )}
           </div>
