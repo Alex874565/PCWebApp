@@ -2,6 +2,7 @@ import React from "react";
 import "./about.css";
 import "../../atoms/navBar/navBar.css";
 import Navbar from "../../atoms/navBar/navBar";
+import Footer from "../../atoms/footer/footer"
 
 const About = () => {
     return (
@@ -47,6 +48,7 @@ const About = () => {
                 </div>
                 <hr />
             </div>
+            <Footer/>
         </div>
     );
 };

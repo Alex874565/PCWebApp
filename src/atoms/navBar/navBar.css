@@ -34,6 +34,7 @@
 
 .navbar-dropdown {
     position: relative;
+    color: rgba(255, 255, 255, 0.87);
 }
 
 .dropdown-menu {

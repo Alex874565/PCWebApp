@@ -1,3 +1,48 @@
-li {
+/* cart.css */
+
+/* Style for the cart container */
+.cart-container {
+    margin: 0 auto; /* Center the container horizontally */
+    text-align: center; /* Center the content */
+    max-width: 700px; /* Set maximum width */
+    color:black
+}
+
+/* Style for the list of items in the cart */
+.cart-item {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Add space between items */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color:black;
+}
+
+/* Style for buttons */
+.cart-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.cart-button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the empty cart message */
+.empty-cart-message {
     color: black;
+    margin-top: 20px;
+}
+
+/* Style for the total */
+.cart-total {
+    margin-top: 20px;
+    font-weight: bold;
+    color:black
 }

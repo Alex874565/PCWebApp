@@ -1,16 +1,16 @@
-.product-container {
+.productpage-product-container {
     display: flex;
     align-items: center;
   }
   
-  .product-image {
+  .productpage-product-image {
     width: 500px;
     height: auto;
     margin-left: 200px;
 
   }
   
-  .product-details {
+  .productpage-product-details {
     margin: 100px;
     color: black;
     display: flex;
@@ -18,7 +18,7 @@
     align-items: center;
   }
   
-  .product-details button {
+  .productpage-product-details button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -29,6 +29,10 @@
     margin-top:50px
   }
   
-  .product-details button:hover {
+  .productpage-product-details button:hover {
     background-color: #0056b3;
+  }
+
+  .link {
+    text-decoration: none; /* Remove underline */
   }

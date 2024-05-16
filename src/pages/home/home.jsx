@@ -36,7 +36,7 @@ const Home = () => {
         <h2 style={{ paddingLeft: '20px' }}>Trending</h2>
         <ul className="home-products-container">
           {products.slice(0, 5).map((product) => (
-            <li key={product._id} className="product-item">
+            <li key={product.id} className="product-item">
               <Link to={`/product/${product._id}`} className="link">
                 {/* Wrap product with Link */}
                 <img className="home-product-image" src={product.image} alt={product.name} />
@@ -52,7 +52,7 @@ const Home = () => {
         <h2 style={{ paddingLeft: '20px' }}>Recently Updated</h2>
         <ul className="home-products-container">
           {products.slice(5).map((product) => (
-            <li key={product._id} className="home-product-item">
+            <li key={product.id} className="home-product-item">
               <Link to={`/product/${product._id}`} className="link">
                 {/* Wrap product with Link */}
                 <img className="home-product-image" src={product.image} alt={product.name} />
