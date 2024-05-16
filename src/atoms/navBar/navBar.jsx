@@ -31,7 +31,7 @@ const Navbar = () => {
             localStorage.clear()
             axios.defaults.headers.common['Authorization'] = ""
             window.alert("Logged out successfully!")
-            window.location.reload()
+            window.location.replace("/")
         }
     }
 
@@ -69,7 +69,8 @@ const Navbar = () => {
                         {  
                             isDropdownOpen && user && 
                                 <ul className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
-                                    <li><a onClick={logOut}>Log Out</a></li>
+                                    <li><Link to = "/cart">Cart</Link></li>
+                                    <li><a onClick={logOut}>Disconnect</a></li>
                                 </ul>
                         }
                     </div>

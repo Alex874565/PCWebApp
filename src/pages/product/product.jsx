@@ -20,6 +20,24 @@ const ProductPage = () => {
 
   const handleAddToCart = () => {
     // Implement your add to cart logic here
+    const cart = localStorage.getItem("cart")
+    if(cart){
+      var items = JSON.parse(cart)
+      var exists = false;
+      items.map((item) => {if(product._id == item._id){
+        item.count += 1;
+        exists = true;
+      }})
+      if(!exists){
+        items.push(product)
+        items[items.length - 1].count = 1;
+      }
+    }else{
+      var items = []
+      items.push(product);
+      items[items.length - 1].count = 1;
+    }
+    localStorage.setItem("cart", JSON.stringify(items));
     console.log("Product added to cart:", product);
   };
 
@@ -50,7 +68,12 @@ const ProductPage = () => {
           <p>Genre: {product.genre}</p>
           <p>Producer: {product.producer}</p>
           {/* Add more details as needed */}
-          <button onClick={handleAddToCart}>Add to Cart</button>
+          {localStorage.getItem("user") &&
+            <button onClick={handleAddToCart}>Add to Cart</button>
+          }
+          {!localStorage.getItem("user") &&
+            <button onClick={() => {window.location.assign("/login")}}>Log In to Add to Cart </button>
+          }
         </div>
       </div>
       <Footer/>

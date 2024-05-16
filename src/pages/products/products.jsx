@@ -38,7 +38,7 @@ function Products(){
             }
             {console.log(products)}
             {products[0] && products.map((product) => {
-                return <li><img src = {product.image}/> {product.name} {product.price}</li>
+                return <li key={product._id}><img src = {product.image}/> {product.name} {product.price}</li>
             })
             }
             <AI />
