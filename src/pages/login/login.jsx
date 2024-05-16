@@ -4,6 +4,7 @@ import LoginForm from "../../atoms/forms/login/loginForm";
 import GoogleLoginForm from "../../atoms/forms/googleLogin/googleLogin";
 import "./login.css";
 import "../../atoms/forms/googleLogin/googleLogin.css";
+import Footer from "../../atoms/footer/footer"
 
 const Login = () => {
     return (
@@ -17,6 +18,7 @@ const Login = () => {
                     <GoogleLoginForm />
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

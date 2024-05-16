@@ -1,0 +1,12 @@
+/* checkoutForm.css */
+
+/* Style for the container of PayPal button */
+.paypal-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Style for the PayPal button */
+.paypal-button {
+    width: 750px; /* Adjust width as needed */
+}

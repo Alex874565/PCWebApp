@@ -2,6 +2,7 @@ import React from "react";
 import "./contact.css";
 import "../../atoms/navBar/navBar.css";
 import Navbar from "../../atoms/navBar/navBar";
+import Footer from "../../atoms/footer/footer"
 
 const Contact = () => {
     return (
@@ -40,6 +41,7 @@ const Contact = () => {
                 </div>
                 <hr />
             </div>
+            <Footer/>
         </div>
     );
 };

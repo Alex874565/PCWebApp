@@ -7,6 +7,7 @@ import Footer from "../../atoms/footer/footer";
 const ProductPage = () => {
   const { id } = useParams(); // Get the product ID from URL params
   const [product, setProduct] = useState(null);
+  const [addedToCart, setAddedToCart] = useState(false); // State for controlling message visibility
 
   useEffect(() => {
     // Fetch the product details based on the ID
@@ -39,6 +40,7 @@ const ProductPage = () => {
     }
     localStorage.setItem("cart", JSON.stringify(items));
     console.log("Product added to cart:", product);
+    setAddedToCart(true); // Set addedToCart to true when the button is clicked
   };
 
   // Function to format date in a more readable format
@@ -58,9 +60,9 @@ const ProductPage = () => {
   return (
     <div>
       <Navbar/>
-      <div className="product-container">
-        <img src={product.image} alt={product.name} className="product-image" />
-        <div className="product-details">
+      <div className="productpage-product-container">
+        <img src={product.image} alt={product.name} className="productpage-product-image" />
+        <div className="productpage-product-details">
           <h1>{product.name}</h1>
           <p style={{ color: 'red', fontSize: '24px' }}>${product.price}</p>
           <p>{product.description}</p>
@@ -74,6 +76,7 @@ const ProductPage = () => {
           {!localStorage.getItem("user") &&
             <button onClick={() => {window.location.assign("/login")}}>Log In to Add to Cart </button>
           }
+          {addedToCart && <p style={{ color: 'green' }}>Added to Cart</p>} {/* Show message when addedToCart is true */}
         </div>
       </div>
       <Footer/>
