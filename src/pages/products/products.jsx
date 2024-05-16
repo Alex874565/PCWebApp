@@ -7,7 +7,7 @@ import AI from "../../atoms/AI/AI";
 import "./products.css"; // Import your CSS file for styling
 import { Link } from "react-router-dom";
 import Footer from "../../atoms/footer/footer";
-import { max } from "@tensorflow/tfjs";
+
 
 function Products() {
   const { keyword } = useParams();

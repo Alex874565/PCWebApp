@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./usersDashboard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../../../atoms/navBar/navBar";
+import Footer from "../../../atoms/footer/footer";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -45,6 +47,7 @@ const Users = () => {
 
     return (
         <div>
+            <Navbar/>
             <div className = "container">
                 <div className = "sidebar">
                     <ul>
@@ -80,6 +83,7 @@ const Users = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

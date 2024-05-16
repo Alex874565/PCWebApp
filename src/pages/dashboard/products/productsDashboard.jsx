@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./productsDashboard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../../../atoms/navBar/navBar";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -30,6 +31,7 @@ const Products = () => {
 
     return (
         <div>
+            <Navbar/>
             <div className = "container">
                 <div className = "sidebar">
                     <ul>

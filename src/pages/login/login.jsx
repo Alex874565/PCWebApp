@@ -18,7 +18,7 @@ const Login = () => {
                     <GoogleLoginForm />
                 </div>
             </div>
-            <Footer/>
+        
         </div>
     );
 };
