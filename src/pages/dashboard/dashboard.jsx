@@ -3,6 +3,11 @@ import "./dashboard.css";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
+    useEffect(
+        () => {if(localStorage.getItem('token')){axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem("token"))}}, 
+        []
+    )
+
     return (
         <div>
             <div className = "container">

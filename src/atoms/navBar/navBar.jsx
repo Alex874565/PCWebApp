@@ -29,7 +29,6 @@ const Navbar = () => {
     const logOut = () => {
         if(window.confirm("Are you sure you want to log out?")){
             localStorage.clear()
-            axios.defaults.headers.common['Authorization'] = ""
             window.alert("Logged out successfully!")
             window.location.replace("/")
         }

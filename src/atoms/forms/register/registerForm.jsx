@@ -109,14 +109,6 @@ function RegisterForm() {
                     <input autoComplete = "off" placeholder="a-z, 0-9  <30 characters" type = "password" name = "password" id = "register_password" onChange = {(e) => setPassword(e.target.value)} />
                     <br/>
                     <br/>
-                    <label htmlFor = "account-type"><b>Account Type</b></label>
-                    <br/>
-                    <select id = "account-type" name = "account-type" onChange = {(e) => setAccountType(e.target.value)}>
-                        <option value = "admin">Client</option>
-                        <option value = "client">Admin</option>
-                        <option value = "distributor">Distributor</option>
-                    </select>
-                    <br/>
                     <br/>
                     <button type = "submit">Register</button>
                 </form>

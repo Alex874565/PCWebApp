@@ -17,7 +17,8 @@ const LoginForm = () => {
           .then((response) => {
             console.log(response.data);
             localStorage.setItem('user', JSON.stringify(response.data.user))
-            axios.defaults.headers.common['Authorization'] = "Bearer " + response.data.token
+            const token = response.data.token
+            localStorage.setItem('token', JSON.stringify(token))
             console.log(localStorage.getItem('user'))
             window.location.replace('/')
           }).catch((err) => {
