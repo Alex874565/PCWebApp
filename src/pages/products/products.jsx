@@ -19,6 +19,8 @@ function Products() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [ratings, setRatings] = useState({});
+  const [producers, setProducers] = useState([""])
+  const [genres, setGenres] = useState([""])
 
   function getProducts() {
     if (keyword === undefined) {
@@ -61,6 +63,11 @@ function Products() {
     getRatings();
   }, []);
 
+  useEffect(() => {
+    products.map((product) => {if (producers.indexOf(product.producer) == -1) setProducers([...producers, product.producer])});
+    products.map((product) => {if (genres.indexOf(product.genre) == -1) setGenres([...genres, product.genre])})
+  }, [products])
+
   const togglePanel = () => {
     setPanelOpen(!panelOpen);
   };
@@ -90,7 +97,9 @@ function Products() {
         <button className="closeBtn" onClick={togglePanel}>Close</button>
         <div className="filterGroup">
           <label htmlFor="producer">Producer:</label>
-          <input onChange={(e) => setProducer(e.target.value)} type="text" id="producer" name="producer" />
+          <select onChange={(e) => setProducer(e.target.value)} id="producer" name="producer">
+            {producers && producers.map((producer) => (<option key={producer}>{producer}</option>))}
+          </select>
         </div>
         <div className="filterGroup">
           <label htmlFor="min_price">MinPrice:</label>
@@ -102,7 +111,9 @@ function Products() {
         </div>
         <div className="filterGroup">
           <label htmlFor="genre">Genre:</label>
-          <input onChange={(e) => setGenre(e.target.value)} type="text" id="genre" name="genre" />
+          <select onChange={(e) => setGenre(e.target.value)} id="genre" name="genre">
+            {genres && genres.map((genre) => (<option key={genre}>{genre}</option>))}
+          </select>
         </div>
         <button className="applyBtn" onClick={filterProducts}>Apply</button>
         <button className="resetBtn" onClick={resetRenderedProducts}>Reset</button>
