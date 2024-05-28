@@ -15,7 +15,7 @@ const Dashboard = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [totalOrderValue, setTotalOrderValue] = useState(0);
-    const [weeklyOrderValueData, setWeeklyOrderValueData] = useState({});
+    const [dailyOrderValueData, setDailyOrderValueData] = useState({});
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -34,9 +34,9 @@ const Dashboard = () => {
                 setOrders(res.data);
                 const totalValue = res.data.reduce((sum, order) => sum + parseFloat(order.value), 0);
                 setTotalOrderValue(totalValue);
-
-                const ordersByWeek = calculateOrderValuePerWeek(res.data);
-                setWeeklyOrderValueData(ordersByWeek);
+    
+                const ordersByDay = calculateOrderValuePerDay(res.data);
+                setDailyOrderValueData(ordersByDay);
             } catch (error) {
                 console.error('Error fetching orders:', error);
                 setError('Failed to fetch orders. Please try again later.');
@@ -58,31 +58,32 @@ const Dashboard = () => {
         fetchProducts();
     }, []);
 
-    const calculateOrderValuePerWeek = (orders) => {
-        const ordersByWeek = {};
+    const calculateOrderValuePerDay = (orders) => {
+        const ordersByDay = {};
         orders.forEach(order => {
             if (order.order_date) {
-                const date = new Date(order.order_date);
+                const [day, month, year] = order.order_date.split('.');
+                const date = new Date(`${year}-${month}-${day}`);
+                
                 if (!isNaN(date.getTime())) {
-                    const firstDayOfWeek = new Date(date.setDate(date.getDate() - date.getDay()));
-                    const week = `${firstDayOfWeek.getFullYear()}-${String(firstDayOfWeek.getMonth() + 1).padStart(2, '0')}-${String(firstDayOfWeek.getDate()).padStart(2, '0')}`;
-                    if (!ordersByWeek[week])
-                        ordersByWeek[week] = 0;
-                    ordersByWeek[week] += parseFloat(order.value);
+                    const formattedDate = date.toISOString().split('T')[0];
+                    if (!ordersByDay[formattedDate])
+                        ordersByDay[formattedDate] = 0;
+                    ordersByDay[formattedDate] += parseFloat(order.value);
                 } else
                     console.error("Invalid date format:", order.order_date);
             } else
                 console.error("Date is undefined for order:", order);
         });
-        return ordersByWeek;
+        return ordersByDay;
     };
 
     const chartData = {
-        labels: Object.keys(weeklyOrderValueData),
+        labels: Object.keys(dailyOrderValueData),
         datasets: [
             {
                 label: 'Total Order Value',
-                data: Object.values(weeklyOrderValueData),
+                data: Object.values(dailyOrderValueData),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
             },
@@ -126,7 +127,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className = "chart-container">
-                        <h2>Total Order Value per Week</h2>
+                        <h2>Total Order Value per Day</h2>
                         <Line data = {chartData} />
                     </div>
 
