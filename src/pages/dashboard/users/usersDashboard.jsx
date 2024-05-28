@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./usersDashboard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,14 +8,14 @@ import Footer from "../../../atoms/footer/footer";
 const Users = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [groupRefs, setGroupRefs] = useState({});
 
-    useEffect(
-        () => {
-            if (localStorage.getItem('token')) {
-                axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem("token"))
-            }}, 
-        []
-    )
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem("token"));
+        }
+    }, []);
 
     useEffect(() => {
         fetchUsers();
@@ -24,15 +24,20 @@ const Users = () => {
     const fetchUsers = async () => {
         try {
             const res = await axios.get("http://localhost:3001/api/users/");
-            setUsers(res.data);
+            const sortedUsers = res.data.sort((a, b) => a.name.localeCompare(b.name));
+            setUsers(sortedUsers);
+            const refs = {};
+            sortedUsers.forEach(user => {
+                const firstLetter = user.name[0].toUpperCase();
+                if (!refs[firstLetter]) {
+                    refs[firstLetter] = React.createRef();
+                }
+            });
+            setGroupRefs(refs);
         } catch (error) {
             console.error('Error fetching users:', error);
             setError('Failed to fetch users. Please try again later.');
         }
-    };
-
-    const handleEditClick = (userId) => {
-        window.location.assign(`/edit_user/${userId}`);
     };
 
     const handleRoleChange = async (userId, newRole) => {
@@ -45,9 +50,41 @@ const Users = () => {
         }
     };
 
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const filteredUsers = users.filter(user =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const groupedUsers = filteredUsers.reduce((groups, user) => {
+        const firstLetter = user.name[0].toUpperCase();
+        if (!groups[firstLetter]) {
+            groups[firstLetter] = [];
+        }
+        groups[firstLetter].push(user);
+        return groups;
+    }, {});
+
+    const handleLetterClick = (letter) => {
+        if (groupRefs[letter]) {
+            groupRefs[letter].current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
+    const handleTopButtonClick = () => {
+        const container = document.querySelector('.main-content');
+        if (container) {
+            container.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    
+
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <div className = "container">
                 <div className = "sidebar">
                     <ul>
@@ -60,30 +97,53 @@ const Users = () => {
                     </ul>
                 </div>
                 <div className = "main-content">
-                    <h1>Users management</h1>
+                    <h1>Users Management</h1>
+                    <input
+                        type = "text"
+                        placeholder = "Search users by name"
+                        value = {searchQuery}
+                        onChange = {handleSearchChange}
+                        className = "search-bar"
+                    />
+                    <div className = "letters-list">
+                        {Object.keys(groupedUsers).sort().map(letter => (
+                            <span key = {letter} onClick = {() => handleLetterClick(letter)}>
+                                {letter}
+                            </span>
+                        ))}
+                    </div>
                     <div className = "card-container">
                         {error ? (
                             <div className = "error-message">{error}</div>
                         ) : (
-                            users.map(user => (
-                                <div key = {user._id} className="card">
-                                    <h2>{user.name}</h2>
-                                    <p>{user.email}</p>
-                                    <select
-                                        value = {user.role}
-                                        onChange={(e) => handleRoleChange(user._id, e.target.value)}
-                                    >
-                                        <option value = "Client">Client</option>
-                                        <option value = "Admin">Admin</option>
-                                        <option value = "Distributor">Distributor</option>
-                                    </select>
+                            Object.keys(groupedUsers).sort().map(letter => (
+                                <div key = {letter} className = "group" ref = {groupRefs[letter]}>
+                                    <h2>{letter}</h2>
+                                    {groupedUsers[letter].map(user => (
+                                        <div key = {user._id} className = "card">
+                                            <h2>{user.name}</h2>
+                                            <p>ID: {user._id}</p>
+                                            <p>Email: {user.email}</p>
+                                            <select
+                                                value = {user.role}
+                                                onChange = {(e) => handleRoleChange(user._id, e.target.value)}
+                                            >
+                                                <option value = "Client">Client</option>
+                                                <option value = "Admin">Admin</option>
+                                                <option value = "Distributor">Distributor</option>
+                                            </select>
+                                        </div>
+                                    ))}
                                 </div>
                             ))
                         )}
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <button className = "top-button" onClick = {handleTopButtonClick}>
+                ↑
+            </button>
+            <Footer />
         </div>
     );
 };

@@ -2,62 +2,61 @@
     background-color: #242424;
     color: white;
     padding: 40px 0;
-  }
-  
-  .footer__container {
+}
+
+.footer__container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-  }
-  
-  .footer__section {
+}
+
+.footer__section {
     flex: 1 1 300px;
     margin-bottom: 20px;
-  }
-  
-  .footer__section h3 {
+}
+
+.footer__section h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-  }
-  
-  .footer__section ul {
+}
+
+.footer__section ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  .footer__section ul li {
+}
+
+.footer__section ul li {
     margin-bottom: 5px;
-  }
-  
-  .footer__section ul li a {
+}
+
+.footer__section ul li a {
     color: white;
     text-decoration: none;
-  }
-  
-  .footer__section ul li a:hover {
+}
+
+.footer__section ul li a:hover {
     text-decoration: underline;
-  }
-  
-  .footer__social-icons {
+}
+
+.footer__social-icons {
     padding: 0;
-  }
-  
-  .footer__social-icons li {
+}
+
+.footer__social-icons li {
     display: inline-block;
     margin-right: 10px;
-  }
-  
-  .footer__social-icons li:last-child {
+}
+
+.footer__social-icons li:last-child {
     margin-right: 0;
-  }
-  
-  .footer__social-icons li a {
+}
+
+.footer__social-icons li a {
     color: white;
     font-size: 1.5rem;
-  }
-  
-  .footer__copyright {
+}
+
+.footer__copyright {
     text-align: center;
     margin-top: 20px;
-  }
-  
+}
