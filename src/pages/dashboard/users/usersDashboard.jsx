@@ -3,18 +3,17 @@ import "./usersDashboard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../../atoms/navBar/navBar";
-import Footer from "../../../atoms/footer/footer";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [groupRefs, setGroupRefs] = useState({});
+    const mainContentRef = useRef(null);
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem('token'))
             axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem("token"));
-        }
     }, []);
 
     useEffect(() => {
@@ -29,9 +28,8 @@ const Users = () => {
             const refs = {};
             sortedUsers.forEach(user => {
                 const firstLetter = user.name[0].toUpperCase();
-                if (!refs[firstLetter]) {
+                if (!refs[firstLetter])
                     refs[firstLetter] = React.createRef();
-                }
             });
             setGroupRefs(refs);
         } catch (error) {
@@ -55,35 +53,32 @@ const Users = () => {
     };
 
     const filteredUsers = users.filter(user =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const groupedUsers = filteredUsers.reduce((groups, user) => {
         const firstLetter = user.name[0].toUpperCase();
-        if (!groups[firstLetter]) {
+        if (!groups[firstLetter])
             groups[firstLetter] = [];
-        }
         groups[firstLetter].push(user);
         return groups;
     }, {});
 
     const handleLetterClick = (letter) => {
-        if (groupRefs[letter]) {
-            groupRefs[letter].current.scrollIntoView({ behavior: "smooth" });
-        }
+        if (groupRefs[letter])
+            groupRefs[letter].current.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
     const handleTopButtonClick = () => {
-        const container = document.querySelector('.main-content');
-        if (container) {
-            container.scrollTo({ top: 0, behavior: "smooth" });
+        if (mainContentRef.current) {
+            mainContentRef.current.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
-        window.scrollTo({ top: 0, behavior: "smooth" });
     };
-    
 
     return (
-        <div>
+        <div className = "root-container">
             <Navbar />
             <div className = "container">
                 <div className = "sidebar">
@@ -96,11 +91,11 @@ const Users = () => {
                         <li id = "website-name">Love4Games</li>
                     </ul>
                 </div>
-                <div className = "main-content">
+                <div className = "main-content" ref = {mainContentRef}>
                     <h1>Users Management</h1>
                     <input
                         type = "text"
-                        placeholder = "Search users by name"
+                        placeholder = "Search users by name or email"
                         value = {searchQuery}
                         onChange = {handleSearchChange}
                         className = "search-bar"
@@ -143,7 +138,6 @@ const Users = () => {
             <button className = "top-button" onClick = {handleTopButtonClick}>
                 ↑
             </button>
-            <Footer />
         </div>
     );
 };
