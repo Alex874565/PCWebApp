@@ -11,8 +11,9 @@
 
 .contact-page h1 {
     font-size: 30px;
-    margin-bottom: 20px;
-    color: black;
+    margin-bottom: 150px;
+    color: #242424;
+    text-decoration: underline;
 }
 
 .contact-page p {

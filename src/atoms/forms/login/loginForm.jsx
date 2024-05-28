@@ -2,6 +2,7 @@ import $ from 'jquery';
 import { useState } from 'react';
 import axios from 'axios';
 import './loginForm.css';
+import GoogleLoginForm from '../googleLogin/googleLogin';
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -74,6 +75,7 @@ const LoginForm = () => {
             <div id = "login-register">Don't have an account?<br />
                 <button onClick = {() => {window.location.href = '/register';}} >Register</button>
             </div>
+            <GoogleLoginForm />
             <div id = "login-errors">
             </div>
         </div>

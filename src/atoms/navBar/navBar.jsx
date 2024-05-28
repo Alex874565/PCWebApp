@@ -1,15 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from '../searchBar/searchBar';
 import '../../atoms/searchBar/searchBar.css';
 import './navBar.css';
+import $ from 'jquery';
 
 const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const [user, setUser] = useState(null);
+    const location = useLocation();
 
     const handleClickInsideDropdown = (e) => {
         e.stopPropagation();
@@ -46,38 +48,46 @@ const Navbar = () => {
         }
     }, [])
 
+    useEffect(() => {
+        $('.navbar-links a').each(function () {
+            if(window.location.href === this.href){
+                this.classList.add('active')
+            }
+        })
+    })
+
     return (
         <nav className="navbar">
             <div className="navbar-logo"><Link style ={{color:"rgba(255, 255, 255, 0.87)",textDecoration: "none"}} to = "/">Love4Games</Link></div>
             <SearchBar/>
-            <ul className="navbar-links">
-                <li><Link to = "/about">About</Link></li>
-                <li><Link to = "/products/">Products</Link></li>
-                <li><Link to = "/contact">Contact</Link></li>
+            <div className="navbar-links">
+                <Link to = "/about">About</Link>
+                <Link to = "/products/">Products</Link>
+                <Link to = "/contact">Contact</Link>
                 {
                     user && ["Admin", "Distributor"].indexOf(user.role) != -1 &&
-                    <li><Link to = "/dashboard">Dashboard</Link></li>
+                    <Link to = "/dashboard">Dashboard</Link>
                 }
-                <li className = "navbar-dropdown" ref = {dropdownRef}>
+                <div className = "navbar-dropdown" ref = {dropdownRef}>
                     <div className = "profile-icon" onClick = {handleIconClick} style = {{ cursor: 'pointer' }}>
                         <FontAwesomeIcon icon={faUser} />
                         {
                             isDropdownOpen && !user &&
-                                <ul className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
-                                    <li><Link to = "/login">Log In</Link></li>
-                                    <li><Link to = "/register">Register</Link></li>
-                                </ul>
+                                <div className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
+                                    <Link to = "/login">Log In</Link>
+                                    <Link to = "/register">Register</Link>
+                                </div>
                         }
                         {  
                             isDropdownOpen && user && 
-                                <ul className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
-                                    <li><Link to = "/cart">Cart</Link></li>
-                                    <li><a onClick={logOut}>Disconnect</a></li>
-                                </ul>
+                                <div className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
+                                    <Link to = "/cart">Cart</Link>
+                                    <a onClick={logOut}>Disconnect</a>
+                                </div>
                         }
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </nav>
     );
 };

@@ -11,12 +11,8 @@ const Login = () => {
         <div>
             <Navbar />
             <div className = "login-container">
-                <h1 className = "title">Log in</h1>
+                <h1 className = "login_title">Log in</h1>
                 <LoginForm />
-                <div className = "google-login-wrapper">
-                    <p className = "login-with-google-text">Or log in with Google?</p>
-                    <GoogleLoginForm />
-                </div>
             </div>
         
         </div>

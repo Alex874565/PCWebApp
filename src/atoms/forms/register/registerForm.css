@@ -6,22 +6,23 @@
     align-items: center;
     height: 100vh;
     padding: 20px;
+    padding-top: 5px;
 }
 
 #register-form {
     width: 100%;
     max-width: 400px;
-    background-color: #f0f0f0; /* Light background color to match login form */
+    background-color: #c9c9c9c9; /* Light background color to match login form */
     border-radius: 20px; /* Increased border radius to match login form */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Increased box shadow to match login form */
-    padding: 40px; /* Increased padding to match login form */
+    padding: 20px 40px; /* Increased padding to match login form */
     margin-bottom: 30px;
     margin: 0 auto;
 }
 
 #register-form label {
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     color: #333; /* Darker text color to match login form */
 }
 
@@ -30,7 +31,7 @@
 #register-form select {
     width: calc(100% - 24px);
     padding: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     border: 2px solid #4dccbd; /* Custom border color to match login form */
     border-radius: 8px;
     transition: border-color 0.3s ease;
@@ -62,23 +63,23 @@
 #register-errors {
     color: red;
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
 }
 
 /* Code form styling */
 #code-form {
     width: 100%;
     max-width: 400px;
-    background-color: #f0f0f0; /* Light background color to match login form */
+    background-color: #c9c9c9c9; /* Light background color to match login form */
     border-radius: 20px; /* Increased border radius to match login form */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Increased box shadow to match login form */
-    padding: 40px; /* Increased padding to match login form */
+    padding: 20px 40px; /* Increased padding to match login form */
     margin: 0 auto;
-    margin-bottom: 30px;
 }
 
 #code-form input[type="text"] {
-    width: calc(100% - 24px);
+    width: calc(100%);
     padding: 14px;
     margin-bottom: 20px;
     border: 2px solid #4dccbd; /* Custom border color to match login form */
@@ -101,7 +102,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 #code-form button:hover {

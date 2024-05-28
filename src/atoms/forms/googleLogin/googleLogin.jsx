@@ -28,6 +28,7 @@ const GoogleLoginForm = () => {
 
     return (
     <div className = "google_login_body">
+        <p>Or sign in with Google?</p>
         <GoogleLogin onSuccess={processUser} onError={(error) => console.log('Login Failed:', error)} />
     </div>
     );

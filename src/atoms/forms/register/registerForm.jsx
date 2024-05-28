@@ -3,6 +3,7 @@ import $ from 'jquery';
 import axios from 'axios';
 import './registerForm.css';
 import { Link } from 'react-router-dom';
+import GoogleLoginForm from '../googleLogin/googleLogin';
 
 function RegisterForm() {
     const [username, setUsername] = useState("");
@@ -150,6 +151,7 @@ function RegisterForm() {
                     <button type="submit">Register</button>
                 </form>
             </div>
+            <GoogleLoginForm />
             {errors && <div id="register-errors">{errors}</div>}
             {code && (
                 <div id="code-form">

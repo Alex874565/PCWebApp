@@ -14,7 +14,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     getProducts();
-  });
+  }, []);
 
   useEffect(() => {
     if (keyword) {

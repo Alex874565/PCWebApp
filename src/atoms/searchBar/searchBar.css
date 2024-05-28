@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     width: 800px;
+    margin-right: 10px;
 }
 
 .search-bar input {
@@ -12,8 +13,8 @@
     font-size: 16px;
     width: 800px;
     outline: none; 
-    background-color: #242424;
-    color: rgba(255, 255, 255, 0.87);
+    background-color: white;
+    color: #242424;
 }
 
 .search-bar button {

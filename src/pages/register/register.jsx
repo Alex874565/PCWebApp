@@ -9,14 +9,8 @@ const Register = () => {
         <div>
             <Navbar />
             <div className = "register-container">
-                <h1 className = "title">Register</h1>
+                <h1 className = "register_title">Register</h1>
                 <RegisterForm />
-                <div className = "google-login-wrapper">
-                    
-                    <p className = "login-with-google-text">Or register with Google?</p>
-                    
-                    <GoogleLoginForm />
-                </div>
             </div>
         </div>
     )

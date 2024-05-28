@@ -1,38 +1,12 @@
-.title {
+.register_title {
     text-align: center;
-    color: #4dccbd;
-    margin-bottom: 0px;
+    color: #242424;
+    margin-bottom: 10px;
     margin-top: 10px;
+    text-decoration: underline;
 }
 
 .register-container {
-    padding-top: 60px;
+    padding-top: 0px;
     background-color: #ffffff;
-}
-
-.google-login-wrapper {
-    width: 100%;
-    max-width: 400px;
-    background-color: #ffffff00;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -500px;
-}
-
-.google-login-wrapper p {
-    margin-bottom: 5px;
-}
-
-.google-login-wrapper .google-login-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 2px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }

@@ -10,8 +10,10 @@
   
 .about-page h1 {
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
+    margin-top: 60px;
     color: black;
+    text-decoration: underline;
 }
 
 .text {

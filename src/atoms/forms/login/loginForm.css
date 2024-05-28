@@ -2,13 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px 20px; /* Increased padding */
+    padding: 10px;
+    margin: 0px;
 }
 
 #login-form {
     width: 100%;
     max-width: 400px;
-    background-color: #f0f0f0; /* Light background color */
+    background-color: #c9c9c9c9; /* Light background color */
     border-radius: 20px; /* Increased border radius */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Increased box shadow */
     padding: 40px; /* Increased padding */
@@ -18,8 +19,9 @@
 
 #login-form label {
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     color: #333; /* Darker text color */
+    text-align: center;
 }
 
 #login-form input[type="text"],
@@ -54,6 +56,7 @@
 }
 
 #login-register {
+    margin-top: 25px;
     margin-bottom: 20px;
     color:black;
 }

@@ -1,7 +1,11 @@
-.title {
+.login_title {
+    padding-top: 60px;
     text-align: center;
-    color: #4dccbd;
+    color: #242424 !important;
+    font-weight: 600;
     margin-bottom: 0px;
+    font-size: 100;
+    text-decoration: underline;
 }
 
 

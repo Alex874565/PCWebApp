@@ -7,6 +7,7 @@ import AI from "../../atoms/AI/AI";
 import "./products.css"; // Import your CSS file for styling
 import { Link } from "react-router-dom";
 import Footer from "../../atoms/footer/footer";
+import $ from 'jquery';
 
 
 function Products() {
@@ -37,6 +38,7 @@ function Products() {
   }
 
   function getRatings() {
+    console.log('ok')
     axios.get("http://localhost:3001/api/reviews").then((resp) => {
       const ratingsData = resp.data;
       const ratingsMap = {};
@@ -94,6 +96,7 @@ function Products() {
   function renderFilterPanel() {
     return (
       <div className={`sidepanel ${panelOpen ? 'open' : 'closed'}`}>
+        <h2>Filter Products</h2>
         <button className="closeBtn" onClick={togglePanel}>Close</button>
         <div className="filterGroup">
           <label htmlFor="producer">Producer:</label>
@@ -117,6 +120,7 @@ function Products() {
         </div>
         <button className="applyBtn" onClick={filterProducts}>Apply</button>
         <button className="resetBtn" onClick={resetRenderedProducts}>Reset</button>
+        {products != [] && AI(products)}
       </div>
     );
   }
@@ -138,25 +142,26 @@ function Products() {
   return (
     <div>
       <Navbar />
-      {!panelOpen && <button className="openFilterBtn" onClick={togglePanel}>Open Filter</button>}
-      {renderFilterPanel()}
-      {!renderedProducts[0] && <p>No products matching that filter/keyword!</p>}
-      <h1>List of Products:</h1>
-      <ul className="products-container">
-        {renderedProducts.map((product) => (
-          <li key={product._id} className="product-item">
-            <Link to={`/product/${product._id}`} className="link">
-              <img className="product-image" src={product.image} alt={product.name} />
-              <p className="product-name">{product.name}</p>
-              <p className="product-price">${product.price}</p>
-              <div className="product-rating">
-                {ratings[product._id] ? renderStars(ratings[product._id]) : 'No rating available'}
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <AI />
+      <div className="products_body">
+        {<button className="openFilterBtn" onClick={togglePanel}>Filter <br />& <br /> AI <br />Assistant</button>}
+        {renderFilterPanel()}
+        {!renderedProducts[0] && <p>No products matching that filter/keyword!</p>}
+        <h1 id = "products_title">List of Products</h1>
+        <ul className="products-container">
+          {renderedProducts.map((product) => (
+            <li key={product._id} className="product-item">
+              <Link to={`/product/${product._id}`} className="link">
+                <img className="product-image" src={product.image} alt={product.name} />
+                <p className="product-name">{product.name}</p>
+                <p className="product-price">${product.price}</p>
+                <div className="product-rating">
+                  {ratings[product._id] ? renderStars(ratings[product._id]) : 'No rating available'}
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
       <Footer />
     </div>
   );
