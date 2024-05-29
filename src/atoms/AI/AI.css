@@ -1,44 +1,48 @@
 .ai_body {
-    position: relative;
+    position: absolute;
     width: fit-content;
     height: fit-content;
-    top: 60px;
-    left: 0;
+    top: 12%;
+    right: 1%;
     z-index: 20;
-    border-radius: 20px;
-    padding: 0px;
-    color: #242424; /* Steel blue */
-    font-size: large;
-    margin-top: 0px;
-    margin-left: 50px;
 }
 
-.ai_body h2{
-    color: #242424 !important;
-    font-size: 23px !important;
-    text-align: center;
-    margin: 0px;
-    margin-bottom: 20px !important;
+.assistant-header {
+    background-color: #87CEEB;
+    border-radius: 50px;
+    padding: 20px;
+    color: #4682B4;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#minimize_button {
+    margin-left: auto;
+}
+
+.assistant-text {
+    margin-right: 20px;
 }
 
 .cs-main-container {
     width: 400px;
-    height: 400px !important;
+    height: 450px !important;
     margin-top: 5px;
-    border: 10px solid #242424; /* Sky blue */
+    border: 10px solid #87CEEB;
     border-radius: 10px;
 }
 
 .cs-message-list {
-    background-color: #92dcd3; /* Sky blue */
+    background-color: #87CEEB;
     font-size: 20px;
-    border-bottom: 2px solid #242424; /* Steel blue */
+    border-bottom: 2px solid #4682B4;
     max-height: 860px;
 }
 
 .scrollbar-container {
-    overscroll-behavior: none !important;
-    &.cs-message-list__scroll-wrapper {  
+    &.cs-message-list__scroll-wrapper {
         &.ps {
             padding: 10px;
             padding-right: 20px;
@@ -52,13 +56,13 @@
 
 .cs-message__content {
     font-weight: 600;
-    background-color: #b9deda !important; /* Powder blue */
-    color: #242424; /* Steel blue */
+    background-color: #B0E0E6;
+    color: #4682B4;
 }
 
 .cs-message--outgoing .cs-message__content {
-    color: #242424 !important; /* Powder blue */
-    background-color: #4dccbd !important; /* Steel blue */
+    color: #B0E0E6;
+    background-color: #4682B4;
 }
 
 .cs-message {
@@ -66,43 +70,43 @@
 }
 
 .cs-typing-indicator {
-    background-color: #b9deda !important; /* Sky blue */
+    background-color: #87CEEB !important;
     z-index: 1 !important;
 }
 
 .cs-typing-indicator__text {
     font-family: 'Rocky' !important;
-    color: #242424 !important; /* Steel blue */
+    color: #4682B4 !important;
 }
 
 .cs-typing-indicator__dot {
-    background-color: #242424 !important; /* Steel blue */
+    background-color: #4682B4 !important;
 }
 
 .ps__thumb-y {
-    background-color: #242424 !important; /* Steel blue */
+    background-color: #4682B4 !important;
 }
 
 .ps__rail-y {
-    background-color: #B0E0E6 !important; /* Powder blue */
+    background-color: #B0E0E6 !important;
 }
 
 .cs-message-input {
     font-weight: 600;
     font-size: 20px;
-    background-color: #242424 !important; /* Steel blue */
+    background-color: #4682B4 !important;
     border-top: 0px !important;
 }
 
 .cs-message-input__content-editor-wrapper {
-    background-color: #b9deda !important; /* Powder blue */
+    background-color: #B0E0E6 !important;
 }
 
 .cs-message-input__content-editor {
-    background-color: #b9deda !important; /* Powder blue */
-    color: #242424 !important; /* Steel blue */
+    background-color: #B0E0E6 !important;
+    color: #4682B4 !important;
 }
 
 .cs-button {
-    color: #b9deda !important; /* Powder blue */
+    color: #B0E0E6 !important;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./productsDashboard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,29 +8,32 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
+    const [sortType, setSortType] = useState("alphabetical");
+    const [priceSortOrder, setPriceSortOrder] = useState("asc");
     const [groupRefs, setGroupRefs] = useState({});
+    const mainContentRef = useRef(null);
 
     useEffect(() => {
         if (localStorage.getItem('token'))
             axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem("token"));
+        fetchProducts();
     }, []);
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
+        const refs = {};
+        products.forEach(product => {
+            const firstLetter = product.name[0].toUpperCase();
+            if (!refs[firstLetter])
+                refs[firstLetter] = React.createRef();
+        });
+        setGroupRefs(refs);
+    }, [products]);
 
     const fetchProducts = async () => {
         try {
             const res = await axios.get("http://localhost:3001/api/products/");
             const sortedProducts = res.data.sort((a, b) => a.name.localeCompare(b.name));
             setProducts(sortedProducts);
-            const refs = {};
-            sortedProducts.forEach(product => {
-                const firstLetter = product.name[0].toUpperCase();
-                if (!refs[firstLetter])
-                    refs[firstLetter] = React.createRef();
-            });
-            setGroupRefs(refs);
         } catch (error) {
             console.error('Error fetching products:', error);
             setError('Failed to fetch products. Please try again later.');
@@ -39,6 +42,39 @@ const Products = () => {
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
+    };
+
+    const handleSortAlphabeticallyChange = () => {
+        setSortType("alphabetical");
+        sortProductsAlphabetically();
+    };
+
+    const handleSortPriceChange = () => {
+        setSortType("price");
+        togglePriceSortOrder();
+    };
+
+    const togglePriceSortOrder = () => {
+        const newSortOrder = priceSortOrder === "asc" ? "desc" : "asc";
+        setPriceSortOrder(newSortOrder);
+        sortProductsByPrice(newSortOrder);
+    };
+
+    const sortProductsAlphabetically = () => {
+        const sortedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
+        setProducts(sortedProducts);
+    };
+
+    const sortProductsByPrice = (order) => {
+        const sortedProducts = [...products].sort((a, b) => {
+            const priceA = parseFloat(a.price);
+            const priceB = parseFloat(b.price);
+            if (order === "asc")
+                return priceA - priceB;
+            else
+                return priceB - priceA;
+        });
+        setProducts(sortedProducts);
     };
 
     const filteredProducts = products.filter(product =>
@@ -55,14 +91,14 @@ const Products = () => {
 
     const handleLetterClick = (letter) => {
         if (groupRefs[letter])
-            groupRefs[letter].current.scrollIntoView({ behavior: "smooth" });
+            groupRefs[letter].current.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
     const handleTopButtonClick = () => {
-        const container = document.querySelector('.main-content');
-        if (container)
-            container.scrollTo({ top: 0, behavior: "smooth" });
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (mainContentRef.current) {
+            mainContentRef.current.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
     };
 
     return (
@@ -79,7 +115,7 @@ const Products = () => {
                         <li id = "website-name">Love4Games</li>
                     </ul>
                 </div>
-                <div className = "main-content">
+                <div className = "main-content" ref = {mainContentRef}>
                     <h1>Products Management</h1>
                     <input
                         type = "text"
@@ -88,31 +124,53 @@ const Products = () => {
                         onChange = {handleSearchChange}
                         className = "search-bar"
                     />
-                    <div className = "letters-list">
-                        {Object.keys(groupedProducts).sort().map(letter => (
-                            <span key = {letter} onClick = {() => handleLetterClick(letter)}>
-                                {letter}
-                            </span>
-                        ))}
+                    <div className = "sort-buttons-container">
+                        <button onClick = {handleSortAlphabeticallyChange} className = "sort-button">
+                            Sort Alphabetically
+                        </button>
+                        <button onClick = {handleSortPriceChange} className = "sort-button">
+                            Sort by Price {priceSortOrder === "desc" ? "(Low to High)" : "(High to Low)"}
+                        </button>
                     </div>
                     <div className = "card-container">
-                        {error ? (
+                        { error ? (
                             <div className = "error-message">{error}</div>
-                        ) : (
-                            Object.keys(groupedProducts).sort().map(letter => (
-                                <div key = {letter} className = "group" ref = {groupRefs[letter]}>
-                                    <h2>{letter}</h2>
-                                    {groupedProducts[letter].map(product => (
-                                        <div key = {product._id} className = "card">
-                                            <h2>{product.name}</h2>
-                                            <p>Description: {product.description}</p>
-                                            <p>Launch Date: {product.launch_date}</p>
-                                            <p>Genre: {product.genre}</p>
-                                            <p>Producer: {product.producer}</p>
-                                            <p>Price: {product.price}</p>
-                                            <p>Stock: {product.stock}</p>
-                                        </div>
+                        ) : sortType === "alphabetical" ? (
+                            <>
+                                <div className = "letters-list">
+                                    { Object.keys(groupedProducts).sort().map(letter => (
+                                        <span key = {letter} onClick = {() => handleLetterClick(letter)}>
+                                            {letter}
+                                        </span>
                                     ))}
+                                </div>
+                                { Object.keys(groupedProducts).sort().map(letter => (
+                                    <div key = {letter} className = "group" ref = {groupRefs[letter]}>
+                                        <h2>{letter}</h2>
+                                        {groupedProducts[letter].map(product => (
+                                            <div key = {product._id} className = "card">
+                                                <h2>{product.name}</h2>
+                                                <p>Description: {product.description}</p>
+                                                <p>Launch Date: {product.launch_date}</p>
+                                                <p>Genre: {product.genre}</p>
+                                                <p>Producer: {product.producer}</p>
+                                                <p>Price: {product.price}</p>
+                                                <p>Stock: {product.stock}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </>
+                        ) : (
+                            filteredProducts.map(product => (
+                                <div key = {product._id} className = "card">
+                                    <h2>{product.name}</h2>
+                                    <p>Description: {product.description}</p>
+                                    <p>Launch Date: {product.launch_date}</p>
+                                    <p>Genre: {product.genre}</p>
+                                    <p>Producer: {product.producer}</p>
+                                    <p>Price: {product.price}</p>
+                                    <p>Stock: {product.stock}</p>
                                 </div>
                             ))
                         )}
