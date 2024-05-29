@@ -11,6 +11,8 @@ const Products = () => {
     const [sortType, setSortType] = useState("alphabetical");
     const [priceSortOrder, setPriceSortOrder] = useState("asc");
     const [groupRefs, setGroupRefs] = useState({});
+    const [editProductId, setEditProductId] = useState(null);
+    const [editFormData, setEditFormData] = useState({});
     const mainContentRef = useRef(null);
 
     useEffect(() => {
@@ -77,6 +79,30 @@ const Products = () => {
         setProducts(sortedProducts);
     };
 
+    const handleEditClick = (product) => {
+        setEditProductId(product._id);
+        setEditFormData({ ...product });
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setEditFormData({ ...editFormData, [name]: value });
+    };
+
+    const handleSaveClick = async (productId) => {
+        try {
+            await axios.put(`http://localhost:3001/api/products/${productId}`, editFormData);
+            const updatedProducts = products.map(product =>
+                product._id === productId ? { ...editFormData, _id: productId } : product
+            );
+            setProducts(updatedProducts);
+            setEditProductId(null);
+        } catch (error) {
+            console.error('Error updating product:', error);
+            setError('Failed to update product. Please try again later.');
+        }
+    };
+
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -104,58 +130,124 @@ const Products = () => {
     return (
         <div>
             <Navbar />
-            <div className = "container">
-                <div className = "sidebar">
+            <div className="container">
+                <div className="sidebar">
                     <ul>
-                        <li><Link to = "/dashboard">Dashboard</Link></li>
-                        <li><Link to = "/users_dashboard">Users</Link></li>
-                        <li id = "active"><Link to = "/products_dashboard">Products</Link></li>
-                        <li><Link to = "/orders_dashboard">Orders</Link></li>
-                        <li id = "red"><Link to = "/">Back to site</Link></li>
-                        <li id = "website-name">Love4Games</li>
+                        <li><Link to="/dashboard">Dashboard</Link></li>
+                        <li><Link to="/users_dashboard">Users</Link></li>
+                        <li id="active"><Link to="/products_dashboard">Products</Link></li>
+                        <li><Link to="/orders_dashboard">Orders</Link></li>
+                        <li id="red"><Link to="/">Back to site</Link></li>
+                        <li id="website-name">Love4Games</li>
                     </ul>
                 </div>
-                <div className = "main-content" ref = {mainContentRef}>
+                <div className="main-content" ref={mainContentRef}>
                     <h1>Products Management</h1>
                     <input
-                        type = "text"
-                        placeholder = "Search products by name"
-                        value = {searchQuery}
-                        onChange = {handleSearchChange}
-                        className = "search-bar"
+                        type="text"
+                        placeholder="Search products by name"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        className="search-bar"
                     />
-                    <div className = "sort-buttons-container">
-                        <button onClick = {handleSortAlphabeticallyChange} className = "sort-button">
+                    <div className="sort-buttons-container">
+                        <button onClick={handleSortAlphabeticallyChange} className="sort-button">
                             Sort Alphabetically
                         </button>
-                        <button onClick = {handleSortPriceChange} className = "sort-button">
+                        <button onClick={handleSortPriceChange} className="sort-button">
                             Sort by Price {priceSortOrder === "desc" ? "(Low to High)" : "(High to Low)"}
                         </button>
                     </div>
-                    <div className = "card-container">
-                        { error ? (
-                            <div className = "error-message">{error}</div>
+                    <div className="card-container">
+                        {error ? (
+                            <div className="error-message">{error}</div>
                         ) : sortType === "alphabetical" ? (
                             <>
-                                <div className = "letters-list">
-                                    { Object.keys(groupedProducts).sort().map(letter => (
-                                        <span key = {letter} onClick = {() => handleLetterClick(letter)}>
+                                <div className="letters-list">
+                                    {Object.keys(groupedProducts).sort().map(letter => (
+                                        <span key={letter} onClick={() => handleLetterClick(letter)}>
                                             {letter}
                                         </span>
                                     ))}
                                 </div>
-                                { Object.keys(groupedProducts).sort().map(letter => (
-                                    <div key = {letter} className = "group" ref = {groupRefs[letter]}>
+                                {Object.keys(groupedProducts).sort().map(letter => (
+                                    <div key={letter} className="group" ref={groupRefs[letter]}>
                                         <h2>{letter}</h2>
                                         {groupedProducts[letter].map(product => (
-                                            <div key = {product._id} className = "card">
-                                                <h2>{product.name}</h2>
-                                                <p>Description: {product.description}</p>
-                                                <p>Launch Date: {product.launch_date}</p>
-                                                <p>Genre: {product.genre}</p>
-                                                <p>Producer: {product.producer}</p>
-                                                <p>Price: {product.price}</p>
-                                                <p>Stock: {product.stock}</p>
+                                            <div key={product._id} className="card">
+                                                {editProductId === product._id ? (
+                                                    <div className="edit-form">
+                                                        <input
+                                                            type="text"
+                                                            name="name"
+                                                            value={editFormData.name}
+                                                            onChange={handleInputChange}
+                                                            className="form-input"
+                                                        />
+                                                        <textarea
+                                                            name="description"
+                                                            value={editFormData.description}
+                                                            onChange={handleInputChange}
+                                                            className="form-textarea"
+                                                        />
+                                                        <input
+                                                            type="text"
+                                                            name="launch_date"
+                                                            value={editFormData.launch_date}
+                                                            onChange={handleInputChange}
+                                                            className="form-input"
+                                                        />
+                                                        <input
+                                                            type="text"
+                                                            name="genre"
+                                                            value={editFormData.genre}
+                                                            onChange={handleInputChange}
+                                                            className="form-input"
+                                                        />
+                                                        <input
+                                                            type="text"
+                                                            name="producer"
+                                                            value={editFormData.producer}
+                                                            onChange={handleInputChange}
+                                                            className="form-input"
+                                                        />
+                                                        <input
+                                                            type="number"
+                                                            name="price"
+                                                            value={editFormData.price}
+                                                            onChange={handleInputChange}
+                                                            className="form-input"
+                                                        />
+                                                        <input
+                                                            type="number"
+                                                            name="stock"
+                                                            value={editFormData.stock}
+                                                            onChange={handleInputChange}
+                                                            className="form-input"
+                                                        />
+                                                        <div className="form-buttons">
+                                                            <button onClick={() => handleSaveClick(product._id)} className="save-button">
+                                                                Save
+                                                            </button>
+                                                            <button onClick={() => setEditProductId(null)} className="cancel-button">
+                                                                Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        <h2>{product.name}</h2>
+                                                        <p>Description: {product.description}</p>
+                                                        <p>Launch Date: {product.launch_date}</p>
+                                                        <p>Genre: {product.genre}</p>
+                                                        <p>Producer: {product.producer}</p>
+                                                        <p>Price: {product.price}</p>
+                                                        <p>Stock: {product.stock}</p>
+                                                        <button onClick={() => handleEditClick(product)} className="edit-button">
+                                                            Edit
+                                                        </button>
+                                                    </>
+                                                )}
                                             </div>
                                         ))}
                                     </div>
@@ -163,21 +255,87 @@ const Products = () => {
                             </>
                         ) : (
                             filteredProducts.map(product => (
-                                <div key = {product._id} className = "card">
-                                    <h2>{product.name}</h2>
-                                    <p>Description: {product.description}</p>
-                                    <p>Launch Date: {product.launch_date}</p>
-                                    <p>Genre: {product.genre}</p>
-                                    <p>Producer: {product.producer}</p>
-                                    <p>Price: {product.price}</p>
-                                    <p>Stock: {product.stock}</p>
+                                <div key={product._id} className="card">
+                                    {editProductId === product._id ? (
+                                        <div className="edit-form">
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                value={editFormData.name}
+                                                onChange={handleInputChange}
+                                                className="form-input"
+                                            />
+                                            <textarea
+                                                name="description"
+                                                value={editFormData.description}
+                                                onChange={handleInputChange}
+                                                className="form-textarea"
+                                            />
+                                            <input
+                                                type="text"
+                                                name="launch_date"
+                                                value={editFormData.launch_date}
+                                                onChange={handleInputChange}
+                                                className="form-input"
+                                            />
+                                            <input
+                                                type="text"
+                                                name="genre"
+                                                value={editFormData.genre}
+                                                onChange={handleInputChange}
+                                                className="form-input"
+                                            />
+                                            <input
+                                                type="text"
+                                                name="producer"
+                                                value={editFormData.producer}
+                                                onChange={handleInputChange}
+                                                className="form-input"
+                                            />
+                                            <input
+                                                type="number"
+                                                name="price"
+                                                value={editFormData.price}
+                                                onChange={handleInputChange}
+                                                className="form-input"
+                                            />
+                                            <input
+                                                type="number"
+                                                name="stock"
+                                                value={editFormData.stock}
+                                                onChange={handleInputChange}
+                                                className="form-input"
+                                            />
+                                            <div className="form-buttons">
+                                                <button onClick={() => handleSaveClick(product._id)} className="save-button">
+                                                    Save
+                                                </button>
+                                                <button onClick={() => setEditProductId(null)} className="cancel-button">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <h2>{product.name}</h2>
+                                            <p>Description: {product.description}</p>
+                                            <p>Launch Date: {product.launch_date}</p>
+                                            <p>Genre: {product.genre}</p>
+                                            <p>Producer: {product.producer}</p>
+                                            <p>Price: {product.price}</p>
+                                            <p>Stock: {product.stock}</p>
+                                            <button onClick={() => handleEditClick(product)} className="edit-button">
+                                                Edit
+                                            </button>
+                                        </>
+                                    )}
                                 </div>
                             ))
                         )}
                     </div>
                 </div>
             </div>
-            <button className = "top-button" onClick = {handleTopButtonClick}>
+            <button className="top-button" onClick={handleTopButtonClick}>
                 ↑
             </button>
         </div>

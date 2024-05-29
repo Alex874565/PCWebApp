@@ -82,7 +82,7 @@ const Navbar = () => {
                             isDropdownOpen && user && 
                                 <div className = "dropdown-menu" onClick = {handleClickInsideDropdown}>
                                     <Link to = "/cart">Cart</Link>
-                                    <a onClick={logOut}>Disconnect</a>
+                                    <a onClick={logOut}>Log Out</a>
                                 </div>
                         }
                     </div>
