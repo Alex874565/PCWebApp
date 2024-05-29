@@ -124,6 +124,7 @@ const Users = () => {
                                             <h2>{user.name}</h2>
                                             <p>ID: {user._id}</p>
                                             <p>Email: {user.email}</p>
+                                            {console.log(user)}
                                             <select
                                                 value = {user.role}
                                                 onChange = {(e) => handleRoleChange(user._id, e.target.value)}
