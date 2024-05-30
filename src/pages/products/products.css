@@ -1,174 +1,183 @@
-  .products_body {
-    height: fit-content;
-  }
-  
-  .products-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style-type: none; /* Remove bullet points */
-    min-height: 892px;
-    margin-left: 100px;
-    margin-right: 100px;
-  }
+.products_body {
+  height: fit-content;
+}
 
-  #products_title {
-    color:#242424;
-    text-align: center;
-    text-decoration: underline;
-    font-weight:bolder;
-    padding: 20px;
-  }
-  
-  .products-container li {
-    margin: 10px;
-    text-align: center;
-  }
-  
-  .products-container li img {
-    max-width: 345px; /* Adjust as needed */
-    max-height: 345px; /* Adjust as needed */
-    object-fit: contain; /* Maintain aspect ratio */
-  }
-  
-  .product-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .product-item p {
-    margin: 5px 0; /* Adjust the margin as needed */
-  }
-  
-  .product-name {
-    color: rgb(0, 0, 0);
-    font-weight: normal;
-  }
-  
-  .product-price {
-    color: rgb(255, 0, 0);
-    font-weight: bold;
-  }
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  min-height: 892px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
 
+#products_title {
+  color:#242424;
+  text-align: center;
+  text-decoration: underline;
+  font-weight:bolder;
+  padding: 20px;
+}
 
-  .sidepanel {
-    position: absolute;
-    top: 0;
-    margin-top: 65px;
-    padding-top: 20px;
-    left: -500px; /* Off-canvas by default */
-    width: 500px;
-    height: calc(107.6%);
-    background-color: #92dcd3;
-    transition: left 0.3s ease-in-out;
-    color: black; /* Set text color to black */
-    z-index: 20;
-    min-height: 1020px;
-  }
+.products-container li {
+  margin: 10px;
+  text-align: center;
+}
 
-  .sidepanel h2{
-    color: #242424;
-    text-align: center;
-    margin-bottom: 0px;
-  }
-  
-  .open {
-    left: 0; /* Bring the side panel into view */
-  }
-  
-  .closed {
-    left: -500px; /* Push the side panel off-canvas */
-  }
-  
-  .filterGroup {
-    padding-left: 90px;
-    padding-right: 90px;
-    padding-top: 10px;
-  }
-  
-  label {
-    font-weight: 600;
-    display: block;
-    color: #242424;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  select,
-  input[type="date"] {
-    width: calc(100%); /* Adjust width as needed */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+.products-container li img {
+  max-width: 345px;
+  max-height: 345px;
+  object-fit: contain;
+}
 
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
-  input[type="number"]{
-    
-    width: calc(100% - 19px); /* Adjust width as needed */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .closeBtn {
-    font-size: 17px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 7px 12px;
-    background-color: #242424;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    &:hover{
-      background-color: #151515;
-    }
-  }
-  
-  .openFilterBtn {
-    position: absolute;
-    top:  65px; /* Adjust the top position as needed */
-    left: 0px;
-    background-color:#242424;
-    color: white;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    min-height: 1040px;
-    height: calc(109.6%);
-    z-index: 10;
-    width: 110px;
-    font-size: 15px;
-    text-align: center;
-    font-weight: 600;
-  }
-  
-  .openFilterBtn:hover {
-    background-color: #151515;
-  }
+.product-item p {
+  margin: 5px 0;
+}
 
-  .applyBtn {
-    margin-left: 160px;
-    margin-right: 20px;
-  }
+.product-name {
+  color: rgb(0, 0, 0);
+  font-weight: normal;
+}
 
-  .applyBtn, .resetBtn{
-    font-size: 17px;
-    margin-top: 20px;
-    padding: 7px 12px;
-    margin-bottom: 0px;
-    background-color: #242424;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    &:hover{
-      background-color: #151515;
-    }
-  }
-  
-  
+.product-price {
+  color: rgb(255, 0, 0);
+  font-weight: bold;
+}
+
+.sidepanel {
+  position: fixed;
+  top: 0;
+  left: -500px;
+  width: 500px;
+  height: 100vh; /* Full height of the viewport */
+  background-color: #92dcd3;
+  transition: left 0.3s ease-in-out;
+  color: black;
+  z-index: 20;
+  overflow-y: auto; /* Scroll within the sidebar if content overflows */
+  padding-top: 85px; /* Ensure padding does not interfere with top position */
+}
+
+.sidepanel h2 {
+  color: #242424;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.open {
+  left: 0;
+}
+
+.closed {
+  left: -500px;
+}
+
+.filterGroup {
+  padding-left: 90px;
+  padding-right: 90px;
+  padding-top: 10px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  color: #242424;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+select,
+input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="number"] {
+  width: calc(100% - 19px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.closeBtn {
+  font-size: 17px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 7px 12px;
+  background-color: #242424;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.closeBtn:hover {
+  background-color: #151515;
+}
+
+.openFilterBtn {
+  position: fixed;
+  top: 65px;
+  left: 0px;
+  background-color: #242424;
+  color: white;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+  height: calc(100vh - 65px);
+  z-index: 10;
+  width: 110px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.openFilterBtn:hover {
+  background-color: #151515;
+}
+
+.applyBtn {
+  margin-left: 160px;
+  margin-right: 20px;
+}
+
+.applyBtn, .resetBtn {
+  font-size: 17px;
+  margin-top: 20px;
+  padding: 7px 12px;
+  margin-bottom: 0px;
+  background-color: #242424;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.applyBtn:hover, .resetBtn:hover {
+  background-color: #151515;
+}
+
+.star {
+  color: #ffd700; /* Gold color for stars */
+}
+
+.star.filled {
+  color: #ffd700;
+}
+
+.star.half-filled {
+  background: linear-gradient(90deg, #ffd700 50%, #ccc 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

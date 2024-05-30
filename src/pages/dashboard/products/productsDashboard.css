@@ -1,12 +1,10 @@
-/* productsDashboard.css */
-
 .container {
     display: flex;
 }
 
 .sidebar {
     width: 20%;
-    background-color: #333;
+    background-color: #4dccbd;
     color: white;
     padding: 10px;
     top: 65px;
@@ -36,7 +34,6 @@
     overflow-y: auto;
 }
 
-
 .sort-buttons-container {
     display: flex;
     gap: 10px;
@@ -47,14 +44,14 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #4dccbd;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .sort-button:hover {
-    background-color: #0056b3;
+    background-color: #3a9a8f;
 }
 
 .card-container {
@@ -70,10 +67,10 @@
     background-color: #f9f9f9;
 }
 
-.card input[type="text"],
-.card input[type="number"],
-.card textarea {
-    width: 100%;
+.card .edit-form input[type="text"],
+.card .edit-form input[type="number"],
+.card .edit-form textarea {
+    width: 60%;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -84,22 +81,22 @@
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #28a745;
+    background-color: #4dccbd;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .card button:hover {
-    background-color: #218838;
+    background-color: #3a9a8f;
 }
 
-.card button.cancel {
+.form-buttons .cancel-button {
     background-color: #dc3545;
     margin-left: 10px;
 }
 
-.card button.cancel:hover {
+.form-buttons .cancel-button:hover {
     background-color: #c82333;
 }
 
@@ -117,7 +114,7 @@
 
 .letters-list span {
     cursor: pointer;
-    color: #007bff;
+    color: #4dccbd;
 }
 
 .letters-list span:hover {
@@ -131,12 +128,12 @@
     padding: 10px 15px;
     border: none;
     border-radius: 50%;
-    background-color: #007bff;
+    background-color: #4dccbd;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .top-button:hover {
-    background-color: #0056b3;
+    background-color: #3a9a8f;
 }

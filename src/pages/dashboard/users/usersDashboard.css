@@ -32,7 +32,7 @@ body, html {
 
 .sidebar {
     width: 250px;
-    background-color: #2c3e50;
+    background-color: #4dccbd;
     padding-top: 20px;
     color: white;
     position: fixed;
@@ -60,7 +60,7 @@ body, html {
 }
 
 .sidebar ul li#active {
-    background-color: #34495e;
+    background-color: #3a9a8f;
 }
 
 .sidebar ul li#red {
@@ -114,7 +114,7 @@ body, html {
     margin: 5px;
     cursor: pointer;
     font-size: 18px;
-    color: #3498db;
+    color: #4dccbd;
 }
 
 .letters-list span:hover {
@@ -173,7 +173,7 @@ body, html {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #3498db;
+    background-color: #4dccbd;
     color: white;
     border: none;
     border-radius: 50%;
@@ -189,5 +189,5 @@ body, html {
 }
 
 .top-button:hover {
-    background-color: #34495e;
+    background-color: #3a9a8f;
 }
