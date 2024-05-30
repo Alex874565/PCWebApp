@@ -16,7 +16,7 @@ body {
     padding-top: 20px;
     color: white;
     position: absolute;
-    height: 97.4%;
+    height: 97%;
 }
 
 .sidebar ul {
@@ -39,12 +39,12 @@ body {
     background-color: #3a9a8f;
 }
 
-.sidebar ul li#red {
-    background-color: #dc3545;
+.sidebar ul li#black {
+    background-color: #242424;
 }
 
-.sidebar ul li#red:hover {
-    background-color: #c82333;
+.sidebar ul li#black:hover {
+    background-color: black;
 }
 
 .sidebar ul li#red a {

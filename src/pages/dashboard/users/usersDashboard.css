@@ -39,7 +39,7 @@ body, html {
     top: 75px;
     left: 0;
     bottom: 0;
-    height: calc(100%);
+    height: calc(97%);
     overflow-y: auto;
 }
 
@@ -114,10 +114,11 @@ body, html {
     margin: 5px;
     cursor: pointer;
     font-size: 18px;
-    color: #4dccbd;
+    color: #242424;
 }
 
 .letters-list span:hover {
+    color: #3a9a8f;
     text-decoration: underline;
 }
 

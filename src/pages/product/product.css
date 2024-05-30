@@ -11,25 +11,25 @@
 
 .productpage-product-details {
     margin: 100px;
-    color: black;
+    color: #242424;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .productpage-product-details button {
-    background-color: #007bff;
+    background-color: #242424;
     color: white;
     border: none;
     padding: 10px 200px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-    margin-top:50px
+    margin-top:50px;
 }
 
 .productpage-product-details button:hover {
-    background-color: #0056b3;
+    background-color: black;
 }
 
 .link {
@@ -38,24 +38,35 @@
 
 .star {
     font-size: 20px;
-    color: lightgray;
+    color: lightgray !important; 
 }
   
 .star.filled {
-    color: gold;
+    color: gold !important;
 }
-  
+
 .productpage-reviews {
     margin-left: 100px;
-    color: black;
+    color: #242424;
+    align-items: center;
+    width: 30%;
 }
 
 .review {
-    margin-left: 30px;
+    margin: 20px 30px;
+    padding: 10px 6% 10px 40px;
+    width: 70%;
+    border: 2px solid #2424245b;
+    border-radius: 10px;
 }
 
+.review p, .stars {
+    margin-left: 20px;
+}
+
+
 .productpage-reviews button {
-    background-color: #007bff;
+    background-color: #242424;
     color: white;
     border: none;
     padding: 10px 10px;
@@ -63,14 +74,34 @@
     border-radius: 5px;
     font-size: 16px;
     margin-bottom: 20px;
+    margin-left: calc(50% - 65px);
+    margin-top: 10px !important;
+    font-size: 15px !important;
 }
 
 .productpage-reviews button:hover {
-    background-color: #0056b3;
+    background-color: black;
+}
+
+.add-review {
+    margin-top: 80px;
+    margin-bottom: 40px;
 }
 
 .add-review textarea {
-    width: 98%;
+    width: 80%;
+    margin-left: 10%;
     min-height: 150px;
     resize: vertical;
+    border-radius: 10px;
+}
+
+#rating {
+    width: 50%;
+    margin: 20px 25%;
+    border-radius: 10px;
+}
+
+.form-group label{
+    font-size: 20px;
 }

@@ -92,12 +92,12 @@
 }
 
 .form-buttons .cancel-button {
-    background-color: #dc3545;
+    background-color: #242424;
     margin-left: 10px;
 }
 
 .form-buttons .cancel-button:hover {
-    background-color: #c82333;
+    background-color: black;
 }
 
 .error-message {
@@ -114,10 +114,11 @@
 
 .letters-list span {
     cursor: pointer;
-    color: #4dccbd;
+    color: #242424;
 }
 
 .letters-list span:hover {
+    color:#3a9a8f;
     text-decoration: underline;
 }
 

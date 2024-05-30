@@ -149,7 +149,7 @@ const ProductPage = () => {
                 ))}
                 { user && (
                     <div className = "add-review">
-                        <h3>Add a Review</h3>
+                        <h2>Add a Review:</h2>
                         <form onSubmit = {handleReviewSubmit}>
                             <div className = "form-group">
                                 <label htmlFor = "rating">Rating:</label>
